@@ -68,7 +68,7 @@ const IncreaseCapacity: React.FC = () => {
   };
 
   return (
-    <section className="xl:mt-40 md:mt-20 mt-12 overflow-hidden max-w-[1920px] w-full block mx-auto">
+    <div className="overflow-hidden max-w-[1920px] w-full block mx-auto">
       <div className="mx-auto xl:px-20 md:px-10 px-6 w-full">
         <h2 className="font-semibold xl:text-[44px] md:text-3xl text-2xl text-center">
           Increasing the capacity with stacking and adjoining the cars.
@@ -129,7 +129,7 @@ const IncreaseCapacity: React.FC = () => {
           </Swiper>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

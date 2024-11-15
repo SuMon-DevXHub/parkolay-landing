@@ -1,17 +1,19 @@
-import { graphql, useStaticQuery } from "gatsby";
+import { graphql, useStaticQuery } from "gatsby"
 
 // Define the structure of the `siteMetadata` object
 interface SiteMetadata {
-  title: string;
-  description: string;
-  siteUrl: string;
+  title: string
+  description: string
+  twitterUsername: string
+  image: string
+  siteUrl: string
 }
 
 // Define the structure of the GraphQL query result
 interface SiteMetadataQuery {
   site: {
-    siteMetadata: SiteMetadata;
-  };
+    siteMetadata: SiteMetadata
+  }
 }
 
 // Custom hook with proper TypeScript types
@@ -22,11 +24,13 @@ export const useSiteMetadata = (): SiteMetadata => {
         siteMetadata {
           title
           description
+          twitterUsername
+          image
           siteUrl
         }
       }
     }
-  `);
+  `)
 
-  return data.site.siteMetadata;
-};
+  return data.site.siteMetadata
+}

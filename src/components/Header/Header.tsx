@@ -10,11 +10,11 @@ interface NavItem {
 
 const navItems: NavItem[] = [
   { path: "/", label: "Our Approach" },
-  { path: "/products", label: "Products" },
-  { path: "/projects", label: "Projects" },
-  { path: "/corporate", label: "Corporate" },
-  { path: "/blog", label: "Blog" },
-  { path: "/news", label: "News" },
+  { path: "/products/", label: "Products" },
+  { path: "/projects/", label: "Projects" },
+  { path: "/corporate/", label: "Corporate" },
+  { path: "/blog/", label: "Blog" },
+  { path: "/news/", label: "News" },
 ];
 
 const Header: React.FC = () => {
@@ -85,7 +85,7 @@ const Header: React.FC = () => {
   };
 
   return (
-    <section className="w-full bg-white shadow-md" role="banner">
+    <div className="w-full bg-white shadow-md" role="banner">
       <header className="max-w-[1920px] mx-auto flex items-center justify-between xl:py-7 py-5 md:px-10 px-6 xl:px-20 text-[#53575A]">
         <div className="flex items-center space-x-2">
           <Link to="/" aria-label="Go to homepage">
@@ -230,7 +230,7 @@ const Header: React.FC = () => {
           </Link>
         </div>
       </aside>
-    </section>
+    </div>
   );
 };
 
