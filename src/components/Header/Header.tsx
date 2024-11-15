@@ -10,11 +10,11 @@ interface NavItem {
 
 const navItems: NavItem[] = [
   { path: "/", label: "Our Approach" },
-  { path: "/products/", label: "Products" },
-  { path: "/projects/", label: "Projects" },
-  { path: "/corporate/", label: "Corporate" },
-  { path: "/blog/", label: "Blog" },
-  { path: "/news/", label: "News" },
+  { path: "/products", label: "Products" },
+  { path: "/projects", label: "Projects" },
+  { path: "/corporate", label: "Corporate" },
+  { path: "/blog", label: "Blog" },
+  { path: "/news", label: "News" },
 ];
 
 const Header: React.FC = () => {
@@ -42,9 +42,14 @@ const Header: React.FC = () => {
     const sidebar = document.getElementById("sidebar");
     const observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
-        if (mutation.type === "attributes" && mutation.attributeName === "class") {
-          document.body.style.overflow = sidebar?.classList.contains("translate-x-full") 
-            ? "auto" 
+        if (
+          mutation.type === "attributes" &&
+          mutation.attributeName === "class"
+        ) {
+          document.body.style.overflow = sidebar?.classList.contains(
+            "translate-x-full"
+          )
+            ? "auto"
             : "hidden";
         }
       });
@@ -70,7 +75,7 @@ const Header: React.FC = () => {
       <Link
         to={path}
         className={`font-semibold md:text-2xl text-lg transition-colors duration-200 ${
-          isActive ? 'text-black' : 'text-[#53575A] hover:text-gray-900'
+          isActive ? "text-black" : "text-[#53575A] hover:text-gray-900"
         }`}
         aria-current={isActive ? "page" : undefined}
       >
@@ -80,8 +85,8 @@ const Header: React.FC = () => {
   };
 
   return (
-    <div className="max-w-[1920px] w-full mx-auto" role="banner">
-      <header className="flex items-center justify-between xl:py-7 py-5 bg-white shadow-md md:px-10 px-6 xl:px-20 text-[#53575A]">
+    <section className="w-full bg-white shadow-md" role="banner">
+      <header className="max-w-[1920px] mx-auto flex items-center justify-between xl:py-7 py-5 md:px-10 px-6 xl:px-20 text-[#53575A]">
         <div className="flex items-center space-x-2">
           <Link to="/" aria-label="Go to homepage">
             <StaticImage
@@ -97,9 +102,9 @@ const Header: React.FC = () => {
           </Link>
         </div>
 
-        <nav 
-          className="hidden space-x-8 xl:flex" 
-          role="navigation" 
+        <nav
+          className="hidden space-x-8 xl:flex"
+          role="navigation"
           aria-label="Main navigation"
         >
           {navItems.map((item) => (
@@ -147,7 +152,7 @@ const Header: React.FC = () => {
         onClick={toggleSidebar}
         role="presentation"
       />
-      
+
       <aside
         id="sidebar"
         className="fixed top-0 right-0 w-64 h-full bg-white shadow-md transform translate-x-full transition-transform duration-300 xl:hidden z-50"
@@ -168,8 +173,8 @@ const Header: React.FC = () => {
               />
             </Link>
           </div>
-          <button 
-            className="focus:outline-none p-2" 
+          <button
+            className="focus:outline-none p-2"
             onClick={toggleSidebar}
             aria-label="Close menu"
           >
@@ -184,9 +189,9 @@ const Header: React.FC = () => {
           </button>
         </div>
         <div className="px-6">
-          <nav 
+          <nav
             className="flex flex-col mt-4 gap-2"
-            role="navigation" 
+            role="navigation"
             aria-label="Mobile navigation"
           >
             {navItems.map((item) => {
@@ -196,7 +201,9 @@ const Header: React.FC = () => {
                   key={item.path}
                   to={item.path}
                   className={`font-semibold text-lg transition-colors duration-200 py-2 ${
-                    isActive ? 'text-black' : 'text-[#53575A] hover:text-gray-900'
+                    isActive
+                      ? "text-black"
+                      : "text-[#53575A] hover:text-gray-900"
                   }`}
                   onClick={toggleSidebar}
                   aria-current={isActive ? "page" : undefined}
@@ -223,7 +230,7 @@ const Header: React.FC = () => {
           </Link>
         </div>
       </aside>
-    </div>
+    </section>
   );
 };
 
