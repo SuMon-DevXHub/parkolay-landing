@@ -75,8 +75,8 @@ const CarLift: React.FC = () => {
       className="overflow-hidden max-w-[1920px] w-full block mx-auto"
       aria-label="Car Lift Solutions"
     >
-      <div className="mx-auto xl:px-20 md:px-10 px-6 w-full">
-        <div className="flex justify-between items-center gap-10 lg:flex-row flex-col-reverse h-full xl:h-[70vh]">
+      <div className="mx-auto xl:px-20 md:px-10 px-6 w-full mt-5">
+        <div className="flex justify-between items-center gap-10 lg:flex-row flex-col-reverse h-full xl:h-[70vh] w-full">
           <div 
             ref={refs.text} 
             className="lg:w-1/2 w-full"
@@ -110,7 +110,7 @@ const CarLift: React.FC = () => {
             <StaticImage
               src="../../assets/images/car_lifts.svg"
               alt="Car lift system showing vertical transportation mechanism"
-              className="block ml-auto md:mr-0 mr-auto shadow-md lg:p-12 p-4"
+              className="block ml-auto md:mr-0 mr-auto shadow-md lg:p-12 p-4 object-cover"
               placeholder="blurred"
               width={600}
               height={400}

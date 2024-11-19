@@ -136,6 +136,16 @@ const IncreaseCapacity: React.FC = () => {
                     aria-label={`${slide.title} demonstration video`}
                     role="presentation"
                   />
+                  {/* <iframe
+                    ref={(el: any) => (videoRefs.current[index] = el)}
+                    src={slide.video}
+                    title={slide.title}
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                    frameBorder="0"
+                    allowFullScreen
+                    aria-label={`${slide.title} demonstration video`}
+                    role="presentation"
+                  /> */}
                   <p className="text-[#05B6C7] font-semibold xl:text-3xl md:text-2xl text-xl mt-4 mb-2">
                     {slide.title}
                   </p>

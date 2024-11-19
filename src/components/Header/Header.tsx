@@ -75,7 +75,7 @@ const Header: React.FC = () => {
       <Link
         to={path}
         className={`font-semibold 2xl:text-2xl xl:text-xl text-lg transition-colors duration-200 ${
-          isActive ? "text-black" : "text-[#53575A] hover:text-gray-900"
+          isActive ? "text-[#05B6C7]" : "text-[#53575A] hover:text-[#05B6C7]"
         }`}
         aria-current={isActive ? "page" : undefined}
       >
@@ -88,15 +88,15 @@ const Header: React.FC = () => {
     <div className="w-full bg-white shadow-md" role="banner">
       <header className="max-w-[1920px] mx-auto flex items-center justify-between xl:py-7 py-5 md:px-10 px-6 xl:px-20 text-[#53575A]">
         <div className="flex items-center space-x-2">
-          <Link to="/" aria-label="Go to homepage">
+          <Link to="/" aria-label="Go to homepage" className="">
             <StaticImage
-              src="../../assets/images/logo/parkolay.svg"
+              src="../../assets/images/parkolay_slogan.svg"
               alt=""
-              className="h-11"
+              className=""
               placeholder="blurred"
               loading="eager"
-              width={150}
-              height={44}
+              width={126}
+              height={46}
               aria-hidden="true"
             />
           </Link>

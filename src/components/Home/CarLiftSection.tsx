@@ -104,7 +104,7 @@ const CarLiftSection: React.FC = () => {
       </div>
 
       <div className="absolute bottom-0 left-0 right-0 xl:mt-24 mt-16 max-w-[1080px] w-full mx-auto text-center xl:px-20 md:px-10 px-6">
-        <p className="font-bold lg:text-xl 2xl:text-2xl text-base text-[#53575A]">
+        <p className="font-bold lg:text-xl 2xl:text-2xl text-base text-[#53575A] 2xl:leading-9 xl:leading-8 leading-7">
           Since our establishment in 1998, our core offering has always been
           Automatic parking systems. Click to see our projects...
         </p>
