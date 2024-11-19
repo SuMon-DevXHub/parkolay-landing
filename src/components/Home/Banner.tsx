@@ -10,10 +10,10 @@ import carParking from "../../assets/videos/car_parking.mp4";
 import "./banner.css";
 const Banner: React.FC = () => {
   const videos: string[] = [carParking, autoParking];
-  const swiperRef = React.useRef(null);
+  const swiperRef = React.useRef<any>(null);
 
   const handleSlideChange = () => {
-    const swiperInstance = swiperRef.current.swiper;
+    const swiperInstance = swiperRef.current?.swiper;
     const slides = swiperInstance.slides;
 
     slides.forEach((slide: any, index: number) => {

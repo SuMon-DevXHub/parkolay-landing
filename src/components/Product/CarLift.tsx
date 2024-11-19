@@ -38,15 +38,7 @@ const CarLift: React.FC = () => {
   const setupAnimation = useCallback(() => {
     if (!refs.section.current || !refs.image.current || !refs.text.current) return;
 
-    const carLiftTimeline = gsap.timeline({
-      scrollTrigger: {
-        trigger: refs.section.current,
-        start: "top 10%",
-        end: "bottom 10%",
-        scrub: 1,
-        pin: true,
-      },
-    });
+    const carLiftTimeline = gsap.timeline();
 
     carLiftTimeline
       .from(refs.image.current, {
@@ -84,7 +76,7 @@ const CarLift: React.FC = () => {
       aria-label="Car Lift Solutions"
     >
       <div className="mx-auto xl:px-20 md:px-10 px-6 w-full">
-        <div className="flex justify-between items-center gap-10 lg:flex-row flex-col-reverse h-full xl:h-screen">
+        <div className="flex justify-between items-center gap-10 lg:flex-row flex-col-reverse h-full xl:h-[70vh]">
           <div 
             ref={refs.text} 
             className="lg:w-1/2 w-full"
@@ -94,10 +86,10 @@ const CarLift: React.FC = () => {
             <h2 className="text-[#05B6C7] xl:text-7xl md:text-5xl text-3xl w-full font-semibold xl:pb-5 pb-4 uppercase">
               Car Lifts
             </h2>
-            <p className="uppercase xl:text-4xl md:text-3xl text-xl font-semibold xl:mt-3 mt-2 xl:mb-10 mb-6">
+            <p className="uppercase xl:text-4xl md:text-3xl text-xl font-semibold xl:mt-3 mt-2 xl:mb-10 mb-6 text-[#4E5051]">
               Car lifts are space savers
             </p>
-            <p className="xl:text-3xl md:text-2xl text-lg font-normal">
+            <p className="xl:text-3xl md:text-2xl text-lg font-normal text-[#53575A]">
               The easiest way to access the garage floors. Car lifts are space
               savers compared to conventional elevator pit dimensions.
             </p>

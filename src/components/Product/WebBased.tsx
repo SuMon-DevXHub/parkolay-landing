@@ -64,13 +64,13 @@ const WebBased: React.FC = () => {
         y: "-200vh",
         opacity: 1,
         duration: 4,
-        ease: "power2.out",
+        ease: "power4.in",
       })
       .to(refs.image.current, {
         x: "-300%",
         opacity: 1,
         duration: 2,
-        ease: "power2.out",
+        ease: "power4.in",
       });
 
     return () => {
@@ -92,7 +92,7 @@ const WebBased: React.FC = () => {
       aria-label="Web-Based User Interface"
       role="region"
     >
-      <div className="flex justify-center items-center gap-10 lg:flex-row flex-col webbased-section mx-auto xl:px-20 md:px-10 px-6 h-screen w-screen">
+      <div className="flex justify-center items-center gap-10 lg:flex-row flex-col webbased-section mx-auto xl:px-20 md:px-10 px-6 h-[80vh] w-screen">
           <div
             ref={refs.text} 
             className="lg:w-1/2 w-full webbased-text"

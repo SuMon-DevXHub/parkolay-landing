@@ -72,13 +72,13 @@ const EasyUse: React.FC = () => {
         y: '-100vh',
         opacity: 1,
         duration: 2,
-        ease: "power2.out",
+        ease: "power4.in",
       })
       .to(refs.text.current, {
         x: '100vh',
         opacity: 1,
         duration: 2,
-        ease: "power2.out",
+        ease: "power4.in",
       })
       .from(refs.text1.current, {
         x: 0,
@@ -92,7 +92,7 @@ const EasyUse: React.FC = () => {
         y: '-200%',
         opacity: 1,
         duration: 2,
-        ease: "power2.out",
+        ease: "power4.in",
       });
 
     return () => {
@@ -115,7 +115,7 @@ const EasyUse: React.FC = () => {
       role="region"
     >
       <div className="mx-auto xl:px-20 md:px-10 px-6 w-full">
-        <div className="flex justify-center items-center gap-10 lg:flex-row flex-col easy-section h-screen">
+        <div className="flex justify-center items-center gap-10 lg:flex-row flex-col easy-section h-[80vh]">
           <div 
             ref={refs.image}
             className="lg:w-1/2 w-full easy-image"
@@ -145,7 +145,7 @@ const EasyUse: React.FC = () => {
           <h2 ref={refs.text1} className="text-[#05B6C7] xl:text-7xl md:text-5xl text-3xl font-semibold xl:pb-5 pb-4 uppercase">
             SAFE AND SILENT
           </h2>
-        <div className="h-screen w-screen">
+        <div className="h-[70vh] w-screen">
         </div>
       </div>
     </div>

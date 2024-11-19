@@ -57,13 +57,13 @@ const FlexibleTarrif: React.FC = () => {
         x: 0,
         opacity: 1,
         duration: 3,
-        ease: "power2.out",
+        ease: "power4.in",
       })
       .to(refs.text.current, {
         x: 0,
         opacity: 1,
         duration: 3,
-        ease: "power2.out",
+        ease: "power4.in",
       });
 
     return () => {

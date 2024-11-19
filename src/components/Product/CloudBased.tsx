@@ -60,7 +60,7 @@ const CloudBased: React.FC = () => {
         y: '-300%',
         opacity: 1,
         duration: 2,
-        ease: "power2.out",
+        ease: "power4.in",
       });
 
     return () => {

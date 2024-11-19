@@ -60,7 +60,7 @@ const Complaint: React.FC = () => {
         y: '-70vh',
         opacity: 1,
         duration: 2,
-        ease: "power2.out",
+        ease: "power4.in",
       });
 
     return () => {
