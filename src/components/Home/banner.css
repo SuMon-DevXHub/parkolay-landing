@@ -22,7 +22,7 @@
 }
 
 .swiper-pagination-bullet-active {
-  background: #05B6C7;
+  background: #05B6C7 !important;
   opacity: 1;
 }
 
