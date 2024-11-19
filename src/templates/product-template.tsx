@@ -39,7 +39,7 @@ const ProductTemplate = ({ pageContext }: ProductTemplateProps) => {
           <IncreaseCapacity />
         </section>
         <section aria-label="Parkolay service">
-          <ParkingSolution title={title} />
+          <ParkingSolution />
         </section>
         <section aria-label="Parkolay all system">
           <EasyUse />

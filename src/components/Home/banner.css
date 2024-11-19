@@ -20,15 +20,10 @@
   height: 16px;
   width: 16px;
 }
-/* .swiper-pagination-bullet-active {
-  background: #007aff;
-  opacity: 1;
-} */
+
 .swiper-pagination-bullet.swiper-pagination-bullet-active {
   background: #05B6C7 !important;
-  height: 46px;
-  width: 46px;
-  /* opacity: 1; */
+  opacity: 1;
 }
 
 .line-clamp-3 {
