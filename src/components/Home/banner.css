@@ -20,9 +20,12 @@
   height: 16px;
   width: 16px;
 }
-
-.swiper-pagination-bullet-active {
-  background: #05B6C7 !important;
+/* .swiper-pagination-bullet-active {
+  background: #007aff;
+  opacity: 1;
+} */
+.swiper-pagination-bullet.swiper-pagination-bullet-active {
+  background: #05B6C7!important;
   opacity: 1;
 }
 
