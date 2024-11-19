@@ -4,8 +4,13 @@ import { Suspense, lazy } from "react";
 import { SEO } from "../components/Seo";
 import LoadingSpinner from "../components/LoadingSpinner";
 import Layout from "../components/layout";
+import IncreaseCapacity from "../components/Product/IncreaseCapacity";
 
-const Construction = lazy(() => import("../components/Construction/Construction"));
+// const Construction = lazy(() => import("../components/Construction/Construction"));
+const ParkingSolution = lazy(() => import("../components/SubProducts/ParkingSolution"));
+const EasyUse = lazy(() => import("../components/SubProducts/EasyUse"));
+const DisplayCar = lazy(() => import("../components/SubProducts/DisplayCar"));
+
 
 interface DataProps {
   site: {
@@ -31,19 +36,43 @@ const ProjectsPage: React.FC<PageProps<DataProps>> = ({
     image: site.siteMetadata.image,
   };
 
-  return (
-    <Layout>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-      />
-      <Suspense fallback={<LoadingSpinner />}>
-        <section aria-label="Project running in parkolay">
-          <Construction />
-        </section>
-      </Suspense>
-    </Layout>
-  );
+//   return (
+//     <Layout>
+//       <script
+//         type="application/ld+json"
+//         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+//       />
+//       <Suspense fallback={<LoadingSpinner />}>
+//         <section aria-label="Project running in parkolay">
+//           <Construction />
+//         </section>
+//       </Suspense>
+//     </Layout>
+//   );
+// };
+
+return (
+  <Layout>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+    />
+    <Suspense fallback={<LoadingSpinner />}>
+      <section aria-label="Car lift products in parkolay">
+        <IncreaseCapacity />
+      </section>
+      <section aria-label="Parkolay service">
+        <ParkingSolution />
+      </section>
+      <section aria-label="Parkolay all system">
+        <EasyUse />
+      </section>
+      <section aria-label={`Details about parkolay parking`}>
+        <DisplayCar />
+      </section>
+    </Suspense>
+  </Layout>
+);
 };
 
 export default ProjectsPage;

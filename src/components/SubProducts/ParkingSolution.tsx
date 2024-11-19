@@ -40,11 +40,11 @@ const parkingSolutionSchema = {
   }
 };
 
-interface ParkingSolutionProps {
-  title: string;
-}
+// interface ParkingSolutionProps {
+//   title: string;
+// }
 
-const ParkingSolution: React.FC<ParkingSolutionProps> = ({ title }) => {
+const ParkingSolution: React.FC = () => {
   const refs: AnimationRefs = {
     section: useRef<HTMLDivElement>(null),
     image: useRef<HTMLDivElement>(null),
@@ -131,7 +131,8 @@ const ParkingSolution: React.FC<ParkingSolutionProps> = ({ title }) => {
             id="car-lifts-text"
           >
             <h2 className="text-[#05B6C7] 2xl:text-6xl lg:text-4xl md:text-3xl text-xl w-full font-semibold xl:pb-5 pb-4 uppercase">
-              {title}
+              PARKTRACK
+              {/* {title} */}
             </h2>
             <p className="2xl:text-3xl md:text-xl text-base font-normal w-full">
               Maximizing the effeciency via technological parking sollution.
