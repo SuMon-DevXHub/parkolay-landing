@@ -21,17 +21,17 @@
   width: 16px;
 }
 
-.swiper-pagination-bullet.swiper-pagination-bullet-active {
-  background: #05B6C7 !important;
-  opacity: 1;
-}
-
 .line-clamp-3 {
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.swiper-pagination-bullet.swiper-pagination-bullet-active {
+  background: #05B6C7 !important;
+  opacity: 1;
 }
 
 @media screen and (min-width: 1280px) {
