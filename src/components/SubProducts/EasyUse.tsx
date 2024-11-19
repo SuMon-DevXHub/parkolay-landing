@@ -128,27 +128,27 @@ const EasyUse: React.FC = () => {
                 className="w-full relative z-0"
                 loading="lazy"
               />
-              <div ref={refs.image1} >
+              <div ref={refs.image1} className="absolute top-6 left-6 right-6 bottom-6 z-10 w-[calc(100%-48px)] h-[calc(100%-48px)] object-cover">
                 <StaticImage
                   src="../../assets/images/rectangle_car.svg"
                   alt="Car tariff machine"
-                  className="easy-image-1 absolute top-6 left-6 right-6 bottom-6 z-10 w-[calc(100%-48px)] h-[calc(100%-48px)] object-cover opacity-100"
+                  className="easy-image-1 opacity-100 w-full h-full object-cover"
                   loading="lazy"
                 />
               </div>
-              <div ref={refs.image2}>
+              <div ref={refs.image2} className="absolute top-6 left-6 right-6 bottom-6 z-10 w-[calc(100%-48px)] h-[calc(100%-48px)] object-cover">
                 <StaticImage
                   src="../../assets/images/rectangle_car1.svg"
                   alt="Car tariff machine"
-                  className="easy-image-1 absolute top-6 left-6 right-6 bottom-6 z-10 w-[calc(100%-48px)] h-[calc(100%-48px)] object-cover opacity-0"
+                  className="easy-image-1 opacity-0 w-full h-full object-cover"
                   loading="lazy"
                 />
               </div>
-              <div ref={refs.image3}>
+              <div ref={refs.image3} className="absolute top-6 left-6 right-6 bottom-6 z-10 w-[calc(100%-48px)] h-[calc(100%-48px)] object-cover">
                 <StaticImage
                   src="../../assets/images/rectangle_car.svg"
                   alt="Car tariff machine"
-                  className="easy-image-1 absolute top-6 left-6 right-6 bottom-6 z-10 w-[calc(100%-48px)] h-[calc(100%-48px)] object-cover opacity-0"
+                  className="easy-image-1 opacity-0 w-full h-full object-cover"
                   loading="lazy"
                 />
               </div>
