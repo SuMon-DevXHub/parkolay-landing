@@ -30,7 +30,7 @@ const ApproachCard: React.FC<ApproachCardProps> = ({ approach }) => {
 
   return (
     <div
-      className="xl:w-[386px] xl:h-[286px] lg:w-[300px] lg:h-[286px] rounded-[10px] bg-[#FFF] shadow-[0px_0px_4px_0px_rgba(0,0,0,0.45)] pl-[32px] pt-[32px] pr-[34px] relative overflow-hidden transition-shadow duration-300 group"
+      className="shadow-md p-5 border border-[#8c8c8c] rounded-xl relative overflow-hidden transition-shadow duration-300 group"
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -42,17 +42,15 @@ const ApproachCard: React.FC<ApproachCardProps> = ({ approach }) => {
           className="w-[60px] h-[60px] mx-auto md:mx-0"
         />
         <h3
-          className="pb-3 pt-[35px] text-[#53575A] font-inter font-semibold leading-normal 
-            text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl"
+          className="mt-5 mb-[6px] font-semibold xl:text-2xl text-lg"
         >
           {approach?.title}
         </h3>
-        <p className="text-[#53575A] font-inter xl:text-lg text-sm line-clamp-3">
+        <p className="xl:text-lg text-sm line-clamp-3 font-normal">
           {approach?.description}
         </p>
       </div>
 
-      {/* Overlay with transition */}
       <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-40 transition-opacity duration-500"></div>
 
       {/* "See More" button following cursor */}
@@ -68,7 +66,7 @@ const ApproachCard: React.FC<ApproachCardProps> = ({ approach }) => {
         >
           <Link
             to=""
-            className="bg-[#05B6C7] text-white  py-1 px-1 text-sm rounded-lg text-nowrap"
+            className="bg-[#05B6C7] text-white  py-2 px-5 text-sm rounded-lg text-nowrap"
           >
             See More
           </Link>

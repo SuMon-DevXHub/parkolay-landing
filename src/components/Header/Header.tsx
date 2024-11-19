@@ -74,7 +74,7 @@ const Header: React.FC = () => {
     return (
       <Link
         to={path}
-        className={`font-semibold md:text-2xl text-lg transition-colors duration-200 ${
+        className={`font-semibold 2xl:text-2xl xl:text-xl text-lg transition-colors duration-200 ${
           isActive ? "text-black" : "text-[#53575A] hover:text-gray-900"
         }`}
         aria-current={isActive ? "page" : undefined}
@@ -103,7 +103,7 @@ const Header: React.FC = () => {
         </div>
 
         <nav
-          className="hidden space-x-8 xl:flex"
+          className="hidden xl:space-x-8 space-x-4 lg:flex"
           role="navigation"
           aria-label="Main navigation"
         >
@@ -114,7 +114,7 @@ const Header: React.FC = () => {
 
         <Link
           to="/contact"
-          className="hidden px-5 md:py-4 py-2 text-white bg-[#05B6C7] rounded-full text-xl font-semibold xl:flex justify-center items-center gap-2 group hover:bg-[#049DAC] transition-colors duration-200"
+          className="hidden px-5 2xl:py-4 md:py-3 py-2 text-white bg-[#05B6C7] rounded-full xl:text-xl text-lg font-semibold lg:flex justify-center items-center gap-2 group hover:bg-[#049DAC] transition-colors duration-200"
           aria-label="Contact us"
         >
           <span>Direct Contact</span>
@@ -129,7 +129,7 @@ const Header: React.FC = () => {
         </Link>
 
         <button
-          className="xl:hidden focus:outline-none p-2"
+          className="lg:hidden focus:outline-none p-2"
           onClick={toggleSidebar}
           aria-label="Toggle menu"
           aria-expanded="false"
@@ -148,7 +148,7 @@ const Header: React.FC = () => {
 
       <div
         id="overlay"
-        className="fixed inset-0 bg-black bg-opacity-50 hidden xl:hidden"
+        className="fixed inset-0 bg-black bg-opacity-50 hidden lg:hidden"
         onClick={toggleSidebar}
         role="presentation"
       />

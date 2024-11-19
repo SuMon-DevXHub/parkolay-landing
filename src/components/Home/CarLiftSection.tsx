@@ -90,11 +90,11 @@ const CarLiftSection: React.FC = () => {
   }
 
   return (
-    <div ref={containerRef} className="relative">
-      <div className="sticky top-0 h-screen">
+    <div ref={containerRef} className="relative pb-28">
+      <div className="sticky top-0">
         <video
           ref={videoRef}
-          className="h-screen w-full object-cover"
+          className="h-full w-full object-cover"
           preload="auto"
           playsInline
           muted
@@ -104,7 +104,7 @@ const CarLiftSection: React.FC = () => {
       </div>
 
       <div className="absolute bottom-0 left-0 right-0 xl:mt-24 mt-16 max-w-[1080px] w-full mx-auto text-center xl:px-20 md:px-10 px-6">
-        <p className="font-bold text-lg xl:text-2xl text-[#53575A]">
+        <p className="font-bold lg:text-xl 2xl:text-2xl text-base text-[#53575A]">
           Since our establishment in 1998, our core offering has always been
           Automatic parking systems. Click to see our projects...
         </p>

@@ -12,9 +12,11 @@ import {
   default as image4,
   default as image5,
 } from "../../assets/images/carparking.jpeg";
+import carparking1 from "../../assets/images/car_parking1.jpeg";
+import "./banner.css";
 
 const GarageSection: React.FC = () => {
-  const slides: string[] = [image1, image2, image3, image4, image5];
+  const slides: string[] = [image1, carparking1, image3, carparking1, image5];
   return (
     <>
       <div>
@@ -33,7 +35,7 @@ const GarageSection: React.FC = () => {
         >
           {slides?.map((slide, index) => (
             <SwiperSlide key={index}>
-              <img src={slide} className="w-full max-h-[816px] pb-14" />
+              <img src={slide} className="w-full max-h-[816px]" />
             </SwiperSlide>
           ))}
         </Swiper>

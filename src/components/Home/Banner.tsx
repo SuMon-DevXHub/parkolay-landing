@@ -7,9 +7,11 @@ import { Autoplay, EffectFade, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import autoParking from "../../assets/videos/auto_parking.mp4";
 import carParking from "../../assets/videos/car_parking.mp4";
+import clientSays from "../../assets/videos/client_says.mp4";
 import "./banner.css";
+
 const Banner: React.FC = () => {
-  const videos: string[] = [carParking, autoParking];
+  const videos: string[] = [carParking, autoParking, clientSays];
   const swiperRef = React.useRef<any>(null);
 
   const handleSlideChange = () => {
@@ -29,16 +31,16 @@ const Banner: React.FC = () => {
   };
 
   return (
-    <div className="hero-section text-white text-center relative">
+    <div className="hero-section text-white text-center relative max-w-[1920px] w-full mx-auto">
       <div
-        className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 z-10 w-full"
+        className="absolute left-1/2 -translate-x-1/2 top-1/4 -translate-y-1/4 z-10 w-full"
       >
-        <div>
+        <div className="md:px-10 px-6 xl:px-20">
           <div
             className="text-white font-semibold md:text-xl text-base flex justify-center items-center xl:gap-5 gap-3"
           >
             <p
-              className="border border-white rounded-full lg:px-6 px-4 py-2 hover:bg-[#05B6C7] hover:border-[#05B6C7]"
+              className="border border-white rounded-full lg:px-6 px-3 lg:py-2 py-[6px] hover:bg-[#05B6C7] hover:border-[#05B6C7]"
             >
               Adaptive
             </p>
@@ -54,7 +56,7 @@ const Banner: React.FC = () => {
             </p>
           </div>
           <h1
-            className="xl:text-[56px] md:text-[40px] text-2xl font-semibold my-6 xl:my-16"
+            className="xl:text-[56px] md:text-[40px] text-2xl font-semibold my-3 md:my-6 xl:my-16"
           >
             BETTER PARKING EXPERIENCE
           </h1>
@@ -65,34 +67,34 @@ const Banner: React.FC = () => {
       </div>
 
       <Swiper
-          spaceBetween={30}
-          effect={"fade"}
-          pagination={{
-            clickable: true,
-          }}
-          ref={swiperRef}
-          autoplay={{
-            delay: 5000,
-            disableOnInteraction: false,
-          }}
-          loop
-          modules={[EffectFade, Navigation, Pagination, Autoplay]}
-          onSlideChange={handleSlideChange}
-          className="video-swiper"
-        >
-          {videos?.map((video, index) => (
-            <SwiperSlide key={index} className="video-slide   w-full">
-              <video
-                className="w-full object-cover aspect-video"
-                autoPlay
-                loop
-                muted
-              >
-                <source src={video} type="video/mp4" />
-              </video>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+        spaceBetween={30}
+        effect={"fade"}
+        pagination={{
+          clickable: true,
+        }}
+        ref={swiperRef}
+        autoplay={{
+          delay: 5000,
+          disableOnInteraction: false,
+        }}
+        loop
+        modules={[EffectFade, Navigation, Pagination, Autoplay]}
+        onSlideChange={handleSlideChange}
+        className="video-swiper"
+      >
+        {videos?.map((video, index) => (
+          <SwiperSlide key={index} className="video-slide w-full">
+            <video
+              className="w-full object-cover aspect-video"
+              autoPlay
+              loop
+              muted
+            >
+              <source src={video} type="video/mp4" />
+            </video>
+          </SwiperSlide>
+        ))}
+      </Swiper>
     </div>
   );
 };
