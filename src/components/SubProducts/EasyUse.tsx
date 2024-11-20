@@ -50,8 +50,8 @@ const EasyUse: React.FC = () => {
     const easyUseTimeLine = gsap.timeline({
         scrollTrigger: {
           trigger: refs.section.current,
-          start: "top 20%", 
-          end: "bottom 20%",
+          start: "top 25%", 
+          end: "bottom 25%",
           scrub: 1,
           pin: true,
         }
@@ -71,56 +71,50 @@ const EasyUse: React.FC = () => {
         y: "-150vh",
         duration: 6,
         ease: "power4.in",
-        delay: 3
+        delay: 0
     })
     .to(refs.image1.current, {
-        y: "-200vh",
         duration: 6,
+        y: "-150vh",
         ease: "power4.out",
-        delay: 3
-    })
+        delay: 0
+    }, "<")
     .to(refs.image2.current, {
       y: 0,
       duration: 6,
       ease: "power4.out",
-      delay: 3
-  })
+      delay: 0
+    })
     .to(refs.text2.current, {
         y: textYValue,
         duration: 6,
         ease: "power4.in",
-        delay: 3
-    })
+        delay: 4
+    }, "<")
     .to(refs.image2.current, {
         y: "-150vh",
         duration: 6,
-        ease: "power4.out",
-        delay: 3
+        ease: "power4.in",
+        delay: 2
     })
-    .to(refs.image3.current, {
+    .to(refs.text2.current, {
+      y: "-150vh",
+      duration: 6,
+      ease: "power4.in",
+      delay: 4
+  }, "<")
+  .to(refs.image3.current, {
       y: 0,
       duration: 6,
-      ease: "power4.out",
-      delay: 3
+      ease: "power4.in",
+      delay: 0
   })
-    .to(refs.text2.current, {
-        y: "-150vh",
-        duration: 6,
-        ease: "power4.in",
-        delay: 3
-    })
-    .to(refs.text3.current, {
+  .to(refs.text3.current, {
         y: textYValue,
         duration: 6,
         ease: "power4.in",
-        delay: 3
-    });
-    // .from(refs.image3.current, {
-    //     y: textYValue,
-    //     duration: 3,
-    //     ease: "power4.out",
-    //     delay: 3
-    // }, "<");
+        delay: 0
+  }, "<");
 
     return () => {
       easyUseTimeLine.kill();
@@ -134,7 +128,10 @@ const EasyUse: React.FC = () => {
   }, [setupAnimation]);
 
   return (
-    <div ref={refs.section} className="xl:mt-28 mt-12 overflow-hidden max-w-[1920px] w-full mx-auto">
+    <div 
+      ref={refs.section} 
+      className="xl:mt-28 mt-12 overflow-hidden max-w-[1920px] w-full block mx-auto"
+    >
       <div className="mx-auto xl:px-20 md:px-10 px-6 w-full">
         <div className="flex justify-center items-center gap-10 lg:flex-row flex-col easy-section">
           <div ref={refs.image} className="lg:w-1/2 w-full easy-image relative">
@@ -146,27 +143,27 @@ const EasyUse: React.FC = () => {
                 loading="lazy"
               />
               {/* <div className="border-[40px] border-black outline shadow-lg rounded-xl w-[880px] h-[660px]"></div> */}
-              <div ref={refs.image1} className="absolute top-6 left-6 right-6 bottom-6 z-10 translate-y-0 w-[calc(100%-48px)] h-[calc(100%-48px)] object-fill">
+              <div ref={refs.image1} className="absolute xl:top-5 lg:top-4 md:top-5 top-3 xl:left-8 lg:left-7 md:left-8 left-6 xl:right-10 lg:right-9 md:right-10 right-8 xl:bottom-5 lg:bottom-4 md:bottom-5 bottom-3 z-10 translate-y-0 xl:w-[calc(100%-80px)] lg:w-[calc(100%-63px)] w-[calc(100%-48px)] md:w-[calc(100%-80px)] xl:h-[calc(100%-40px)] lg:h-[calc(100%-32px)] md:h-[calc(100%-40px)] h-[calc(100%-27px)]">
                 <StaticImage
                   src="../../assets/images/rectangle_car.svg"
                   alt="Car tariff machine"
-                  className="easy-image-1 opacity-100 w-full h-full object-cover"
+                  className="easy-image-1 w-full h-full object-cover"
                   loading="lazy"
                 />
               </div>
-              <div ref={refs.image2} className="absolute top-6 left-6 right-6 bottom-6 z-10 translate-y-[150vh] w-[calc(100%-48px)] h-[calc(100%-48px)] object-cover">
+              <div ref={refs.image2} className="absolute xl:top-5 lg:top-4 md:top-5 top-3 xl:left-8 lg:left-7 md:left-8 left-6 xl:right-10 lg:right-9 md:right-10 right-8 xl:bottom-5 lg:bottom-4 md:bottom-5 bottom-3 z-10 translate-y-[-150vh] xl:w-[calc(100%-80px)] lg:w-[calc(100%-63px)] w-[calc(100%-48px)] md:w-[calc(100%-80px)] xl:h-[calc(100%-40px)] lg:h-[calc(100%-32px)] md:h-[calc(100%-40px)] h-[calc(100%-27px)]">
                 <StaticImage
-                  src="../../assets/images/rectangle_car1.svg"
+                  src="../../assets/images/rectangle_car1.png"
                   alt="Car tariff machine"
-                  className="easy-image-2 opacity-100 w-full h-full object-cover"
+                  className="easy-image-2 w-full h-full object-cover"
                   loading="lazy"
                 />
               </div>
-              <div ref={refs.image3} className="absolute top-6 left-6 right-6 bottom-6 z-10 translate-y-[150vh] w-[calc(100%-48px)] h-[calc(100%-48px)] object-cover">
+              <div ref={refs.image3} className="absolute xl:top-5 lg:top-4 md:top-5 top-3 xl:left-8 lg:left-7 md:left-8 left-6 xl:right-10 lg:right-9 md:right-10 right-8 xl:bottom-5 lg:bottom-4 md:bottom-5 bottom-3 z-10 translate-y-[-150vh] xl:w-[calc(100%-80px)] lg:w-[calc(100%-63px)] w-[calc(100%-48px)] md:w-[calc(100%-80px)] xl:h-[calc(100%-40px)] lg:h-[calc(100%-32px)] md:h-[calc(100%-40px)] h-[calc(100%-27px)]">
                 <StaticImage
                   src="../../assets/images/rectangle_car.svg"
                   alt="Car tariff machine"
-                  className="easy-image-3 opacity-100 w-full h-full object-cover"
+                  className="easy-image-3 w-full h-full object-cover"
                   loading="lazy"
                 />
               </div>

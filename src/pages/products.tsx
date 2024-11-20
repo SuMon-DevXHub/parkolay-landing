@@ -6,9 +6,15 @@ import LoadingSpinner from "../components/LoadingSpinner";
 import Layout from "../components/layout";
 import CarLift from "../components/Product/CarLift";
 
-const IncreaseCapacity = lazy(() => import("../components/Product/IncreaseCapacity"));
-const TicketlessSolution = lazy(() => import("../components/Product/TicketlessSolution"));
-const FlexibleTarrif = lazy(() => import("../components/Product/FlexibleTarrif"));
+const IncreaseCapacity = lazy(
+  () => import("../components/Product/IncreaseCapacity")
+);
+const TicketLessSolution = lazy(
+  () => import("../components/Product/TicketLessSolution")
+);
+const FlexibleTariff = lazy(
+  () => import("../components/Product/FlexibleTariff")
+);
 const CloudBased = lazy(() => import("../components/Product/CloudBased"));
 const WebBased = lazy(() => import("../components/Product/WebBased"));
 const Complaint = lazy(() => import("../components/Product/Complaint"));
@@ -25,9 +31,9 @@ interface DataProps {
   };
 }
 
-const ProductsPage: React.FC<PageProps<DataProps>> = ({ 
-  data: { site }, 
-  location 
+const ProductsPage: React.FC<PageProps<DataProps>> = ({
+  data: { site },
+  location,
 }) => {
   const structuredData = {
     "@context": "https://schema.org",
@@ -39,9 +45,7 @@ const ProductsPage: React.FC<PageProps<DataProps>> = ({
   };
 
   return (
-    <Layout
-      banner={<CarLift />}
-    >
+    <Layout banner={<CarLift />}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
@@ -50,11 +54,11 @@ const ProductsPage: React.FC<PageProps<DataProps>> = ({
         <section aria-label="Car lift option in parkolay">
           <IncreaseCapacity />
         </section>
-        <section aria-label="Ticketless solutions in parkolay">
-          <TicketlessSolution />
+        <section aria-label="TicketLess solutions in parkolay">
+          <TicketLessSolution />
         </section>
-        <section aria-label="Flexible tarriff in parkolay">
-          <FlexibleTarrif />
+        <section aria-label="Flexible tariff in parkolay">
+          <FlexibleTariff />
         </section>
         <section aria-label="Cloud based integrated system">
           <CloudBased />

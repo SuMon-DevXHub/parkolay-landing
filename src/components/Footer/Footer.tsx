@@ -8,7 +8,7 @@ import Twitter from "../../assets/images/twitter.svg";
 import Linkedin from "../../assets/images/linkedin.svg";
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-[#383E42] text-gray-300 pt-12 2xl:mt-28 xl:mt-24 md:mt-16 mt-12 w-full">
+    <footer className="bg-[#383E42] text-white pt-12 2xl:mt-28 xl:mt-24 md:mt-16 mt-12 w-full">
       <div className="mx-auto block">
         <div className="max-w-[1920px] w-full md:px-10 px-6 xl:px-20  grid md:grid-cols-3 grid-cols-1 md:justify-items-stretch justify-items-start xl:gap-8 md:gap-4 gap-8 mx-auto">
           <div className="">

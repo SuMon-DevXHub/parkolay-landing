@@ -4,7 +4,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { StaticImage } from "gatsby-plugin-image";
 import { HeadFC } from "gatsby";
 
-if (typeof window !== 'undefined') {
+if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
@@ -23,8 +23,8 @@ const complaintSchema = {
   manufacturer: {
     "@type": "Organization",
     name: "Parkolay",
-    url: "https://parkolay.com"
-  }
+    url: "https://parkolay.com",
+  },
 };
 
 const Complaint: React.FC = () => {
@@ -35,38 +35,77 @@ const Complaint: React.FC = () => {
   };
 
   const setupAnimation = useCallback(() => {
-    if (!refs.section.current || !refs.image.current || !refs.text.current) return;
+    if (!refs.section.current || !refs.image.current || !refs.text.current)
+      return;
 
     const complaintTimeline = gsap.timeline({
       scrollTrigger: {
         trigger: refs.section.current,
-        start: 'top top',
-        end: 'bottom top',
-        scrub: 1,
+        start: "top 20%",
+        end: "+=100%",
+        scrub: 1.5,
         pin: true,
+        anticipatePin: 1,
+        onEnter: () => {
+          gsap.set(refs.text.current, {
+            x: "50vw",
+            y: "50vh",
+            opacity: 0,
+            left: "50%",
+            right: "auto",
+            xPercent: 0,
+          });
+        },
       },
     });
 
+    // Set initial state
+    gsap.set(refs.text.current, {
+      x: "50vw",
+      y: "50vh",
+      opacity: 0,
+      left: "50%",
+      right: "auto",
+      xPercent: 0,
+    });
+
+    // Animation sequence
     complaintTimeline
-      .from(refs.text.current, {
-        x: "100%",
-        y: '70vh',
-        opacity: 1,
-        duration: 2,
-        ease: "power2.out",
-      })
+      // Move to center
       .to(refs.text.current, {
-        x: "-100%",
-        y: '-70vh',
+        x: 0,
+        y: 0,
         opacity: 1,
-        duration: 2,
-        ease: "power4.in",
+        left: "50%",
+        right: "auto",
+        xPercent: -50,
+        duration: 0.4,
+        ease: "power1.inOut",
+      })
+      // Short pause in center with centered text
+      .to(refs.text.current, {
+        x: 0,
+        y: 0,
+        left: "50%",
+        right: "auto",
+        xPercent: -50,
+        duration: 0.2,
+      })
+      // Move to top left with right alignment
+      .to(refs.text.current, {
+        x: "-50vw",
+        y: "-50vh",
+        left: "auto",
+        right: "50%",
+        xPercent: 0,
+        duration: 0.4,
+        ease: "power2.in",
       });
 
     return () => {
       complaintTimeline.kill();
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-      refs.section.current?.removeAttribute('aria-hidden');
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      refs.section.current?.removeAttribute("aria-hidden");
     };
   }, []);
 
@@ -76,40 +115,38 @@ const Complaint: React.FC = () => {
   }, [setupAnimation]);
 
   return (
-    <div 
-      ref={refs.section} 
-      className="overflow-hidden max-w-[1920px] w-full block mx-auto"
+    <div
+      ref={refs.section}
+      className="overflow-hidden w-full block mx-auto"
       aria-label="EN14010 Compliant System"
       role="region"
     >
-      <div className="relative text-white mx-auto block complain-section h-screen w-screen">
-        <div 
+      <div className="relative text-white mx-auto block complain-section h-[880px] w-full">
+        <div
           ref={refs.image}
-          className="w-full h-full complain-image"
+          className="w-full complain-image absolute top-0 left-0 right-0 z-10 backdrop-brightness-50"
           role="img"
           aria-label="EN14010 compliant system illustration"
         >
           <StaticImage
             src="../../assets/images/cloud.svg"
             alt="EN14010 compliant parking system"
-            className="h-full w-full object-cover"
+            className="h-[880px] w-full object-cover"
             placeholder="blurred"
             loading="eager"
             formats={["auto", "webp", "avif"]}
             quality={95}
+            height={880}
+            aria-hidden="true"
           />
         </div>
         <div
           ref={refs.text}
-          className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 z-20 max-w-[1920px] complain-text"
+          className="absolute top-1/2 -translate-y-1/2 z-20 complain-text"
           role="contentinfo"
         >
-          <div className="w-full xl:w-[1400px] md:w-[700px] h-full mx-auto xl:px-20 md:px-10 px-6">
-            <h1
-              className="text-white xl:text-7xl md:text-5xl text-3xl font-bold mb-8"
-            >
-              EN14010 COMPLIANT
-            </h1>
+          <div className="text-white whitespace-nowrap text-3xl md:text-5xl xl:text-7xl font-bold mx-auto">
+            EN14010 COMPLIANT
           </div>
         </div>
       </div>
@@ -122,13 +159,24 @@ export default Complaint;
 export const Head: HeadFC = () => (
   <>
     <title>EN14010 Compliant System | Parkolay</title>
-    <meta name="description" content="EN14010 compliant parking management system" />
-    <meta name="keywords" content="EN14010, compliant parking, safety standards, parking solutions, Parkolay" />
+    <meta
+      name="description"
+      content="EN14010 compliant parking management system"
+    />
+    <meta
+      name="keywords"
+      content="EN14010, compliant parking, safety standards, parking solutions, Parkolay"
+    />
     <meta property="og:title" content="EN14010 Compliant System | Parkolay" />
-    <meta property="og:description" content="EN14010 compliant parking management system" />
+    <meta
+      property="og:description"
+      content="EN14010 compliant parking management system"
+    />
     <meta property="og:type" content="product" />
-    <link rel="canonical" href="https://parkolay.com/products/en14010-compliant" />
-    <meta name="robots" content="index, follow" />
+    <link
+      rel="canonical"
+      href="https://parkolay.com/products/en14010-compliant"
+    />
     <script type="application/ld+json">
       {JSON.stringify(complaintSchema)}
     </script>
