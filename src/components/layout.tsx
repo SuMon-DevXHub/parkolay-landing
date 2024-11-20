@@ -22,8 +22,8 @@ export const Layout: React.FC<LayoutProps> = ({ banner, children }) => {
     <div className="bg-white min-h-screen">
       <Header />
       {banner && banner}
-      <main 
-        className="xl:space-y-24 md:space-y-16 space-y-12 mx-auto text-[#53575A]"
+      <main
+        className="xl:space-y-[120px] md:space-y-16 space-y-12 mx-auto text-[#53575A]"
         id="main-content"
         role="main"
       >
@@ -38,9 +38,9 @@ export const Layout: React.FC<LayoutProps> = ({ banner, children }) => {
 
 export default Layout;
 
-export const Head: HeadFC<LayoutProps> = ({ 
-  data: { title, description, image }, 
-  location 
+export const Head: HeadFC<LayoutProps> = ({
+  data: { title, description, image },
+  location,
 }) => (
   <SEO
     title={title}

@@ -45,13 +45,13 @@ const EasyUse: React.FC = () => {
   };
 
   const setupAnimation = useCallback(() => {
-    if (!refs.section.current || !refs.image.current) return;
+    if (!refs.section.current || !refs.image.current || !refs.text1.current) return;
 
     const easyUseTimeLine = gsap.timeline({
         scrollTrigger: {
-          trigger: ".easy-section",
+          trigger: refs.section.current,
           start: "top 20%", 
-          end: "bottom 5%",
+          end: "bottom 20%",
           scrub: 1,
           pin: true,
         }
@@ -67,43 +67,60 @@ const EasyUse: React.FC = () => {
     }
 
     easyUseTimeLine
-    .to(".easy-text-1", {
-        y: "-150vh",
-        duration: 4,
-        ease: "power4.in",
-        delay: 3
-    })
-    .from(".easy-image-1", {
-        y: 10,
-        duration: 3,
-        ease: "power4.out",
-    })
-    .to(".easy-text-2", {
-        y: textYValue,
-        duration: 6,
-        ease: "power4.in",
-    })
-    .from(".easy-image-2", {
-        y: 10,
-        duration: 3,
-        ease: "power4.out",
-    })
-    .to(".easy-text-2", {
+    .to(refs.text1.current, {
         y: "-150vh",
         duration: 6,
         ease: "power4.in",
         delay: 3
     })
-    .to(".easy-text-3", {
+    .to(refs.image1.current, {
+        y: "-200vh",
+        duration: 6,
+        ease: "power4.out",
+        delay: 3
+    })
+    .to(refs.image2.current, {
+      y: 0,
+      duration: 6,
+      ease: "power4.out",
+      delay: 3
+  })
+    .to(refs.text2.current, {
         y: textYValue,
         duration: 6,
         ease: "power4.in",
+        delay: 3
     })
-    .from(".easy-image-3", {
-        y: 10,
-        duration: 3,
+    .to(refs.image2.current, {
+        y: "-150vh",
+        duration: 6,
         ease: "power4.out",
-    }, "<");
+        delay: 3
+    })
+    .to(refs.image3.current, {
+      y: 0,
+      duration: 6,
+      ease: "power4.out",
+      delay: 3
+  })
+    .to(refs.text2.current, {
+        y: "-150vh",
+        duration: 6,
+        ease: "power4.in",
+        delay: 3
+    })
+    .to(refs.text3.current, {
+        y: textYValue,
+        duration: 6,
+        ease: "power4.in",
+        delay: 3
+    });
+    // .from(refs.image3.current, {
+    //     y: textYValue,
+    //     duration: 3,
+    //     ease: "power4.out",
+    //     delay: 3
+    // }, "<");
 
     return () => {
       easyUseTimeLine.kill();
@@ -121,14 +138,15 @@ const EasyUse: React.FC = () => {
       <div className="mx-auto xl:px-20 md:px-10 px-6 w-full">
         <div className="flex justify-center items-center gap-10 lg:flex-row flex-col easy-section">
           <div ref={refs.image} className="lg:w-1/2 w-full easy-image relative">
-            <div className="relative">
+            <div className="relative overflow-hidden z-0">
               <StaticImage
                 src="../../assets/images/tab.svg"
                 alt="Rectangle border"
                 className="w-full relative z-0"
                 loading="lazy"
               />
-              <div ref={refs.image1} className="absolute top-6 left-6 right-6 bottom-6 z-10 w-[calc(100%-48px)] h-[calc(100%-48px)] object-cover">
+              {/* <div className="border-[40px] border-black outline shadow-lg rounded-xl w-[880px] h-[660px]"></div> */}
+              <div ref={refs.image1} className="absolute top-6 left-6 right-6 bottom-6 z-10 translate-y-0 w-[calc(100%-48px)] h-[calc(100%-48px)] object-fill">
                 <StaticImage
                   src="../../assets/images/rectangle_car.svg"
                   alt="Car tariff machine"
@@ -136,19 +154,19 @@ const EasyUse: React.FC = () => {
                   loading="lazy"
                 />
               </div>
-              <div ref={refs.image2} className="absolute top-6 left-6 right-6 bottom-6 z-10 w-[calc(100%-48px)] h-[calc(100%-48px)] object-cover">
+              <div ref={refs.image2} className="absolute top-6 left-6 right-6 bottom-6 z-10 translate-y-[150vh] w-[calc(100%-48px)] h-[calc(100%-48px)] object-cover">
                 <StaticImage
                   src="../../assets/images/rectangle_car1.svg"
                   alt="Car tariff machine"
-                  className="easy-image-1 opacity-0 w-full h-full object-cover"
+                  className="easy-image-2 opacity-100 w-full h-full object-cover"
                   loading="lazy"
                 />
               </div>
-              <div ref={refs.image3} className="absolute top-6 left-6 right-6 bottom-6 z-10 w-[calc(100%-48px)] h-[calc(100%-48px)] object-cover">
+              <div ref={refs.image3} className="absolute top-6 left-6 right-6 bottom-6 z-10 translate-y-[150vh] w-[calc(100%-48px)] h-[calc(100%-48px)] object-cover">
                 <StaticImage
                   src="../../assets/images/rectangle_car.svg"
                   alt="Car tariff machine"
-                  className="easy-image-1 opacity-0 w-full h-full object-cover"
+                  className="easy-image-3 opacity-100 w-full h-full object-cover"
                   loading="lazy"
                 />
               </div>
@@ -163,7 +181,7 @@ const EasyUse: React.FC = () => {
                 Maximizing the efficiency via technological parking solution.
               </p>
             </div>
-            <div ref={refs.text2} className="easy-text-2 absolute translate-y-[-100vh]">
+            <div ref={refs.text2} className="easy-text-2 absolute translate-y-[150vh]">
               <h2 className="text-[#05B6C7] xl:text-5xl md:text-3xl text-xl w-full font-semibold xl:pb-5 pb-4">
                 IT WORKS LIKE A CHARM 2
               </h2>
@@ -171,7 +189,7 @@ const EasyUse: React.FC = () => {
                 Maximizing the efficiency via technological parking solution.
               </p>
             </div>
-            <div ref={refs.text3} className="easy-text-3 absolute translate-y-[-100vh]">
+            <div ref={refs.text3} className="easy-text-3 absolute translate-y-[150vh]">
               <h2 className="text-[#05B6C7] xl:text-5xl md:text-3xl text-xl w-full font-semibold xl:pb-5 pb-4">
                 IT WORKS LIKE A CHARM 3
               </h2>
