@@ -202,8 +202,8 @@ const Header: React.FC = () => {
                   to={item.path}
                   className={`font-semibold text-lg transition-colors duration-200 py-2 ${
                     isActive
-                      ? "text-black"
-                      : "text-[#53575A] hover:text-gray-900"
+                      ? "text-[#05B6C7]"
+                      : "text-[#53575A] hover:text-[#05B6C7]"
                   }`}
                   onClick={toggleSidebar}
                   aria-current={isActive ? "page" : undefined}
