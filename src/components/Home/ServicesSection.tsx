@@ -51,7 +51,7 @@ const ServicesSection: React.FC = () => {
       <div className="mx-auto xl:px-20 md:px-10 px-6 w-full block">
         <div className="flex lg:flex-row flex-col w-full md:justify-between justify-center">
           <div className="lg:w-[33%]">
-            <p className="text-[#383E42] lg:text-left text-center font-inter text-6xl font-semibold leading-normal">
+            <p className="text-[#383E42] lg:text-left text-center font-inter text-6xl font-semibold leading-normal lg:mt-4 mt-0">
               Services
             </p>
           </div>

@@ -7,7 +7,7 @@ const CaseStudySection: React.FC = () => {
       <div className="mx-auto xl:px-20 md:px-10 px-6 w-full block">
         <div className="flex justify-between items-start gap-12 md:flex-row flex-col-reverse">
           <div className="md:w-[48%] w-full">
-            <h2 className="text-[#05B6C7] xl:text-[56px] md:text-4xl text-3xl w-full font-semibold xl:pb-5 pb-4">
+            <h2 className="text-[#05B6C7] xl:text-[56px] md:text-4xl text-3xl w-full font-semibold py-1">
               CASE STUDY
             </h2>
             <p className="xl:text-xl text-lg font-semibold mt-5">

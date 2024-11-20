@@ -83,7 +83,7 @@ const Banner: React.FC = () => {
         className="video-swiper"
       >
         {videos?.map((video, index) => (
-          <SwiperSlide key={index} className="video-slide w-full">
+          <SwiperSlide key={index} className="video-slide w-full banner-slides">
             <video
               className="w-full object-cover aspect-video"
               autoPlay
