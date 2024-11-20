@@ -46,6 +46,7 @@ const EasyUse: React.FC = () => {
 
   const setupAnimation = useCallback(() => {
     if (!refs.section.current || !refs.image.current || !refs.text1.current) return;
+    if (!refs.section.current || !refs.image.current || !refs.text1.current) return;
 
     const easyUseTimeLine = gsap.timeline({
         scrollTrigger: {
