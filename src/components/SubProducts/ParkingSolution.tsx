@@ -73,24 +73,30 @@ const ParkingSolution: React.FC = () => {
           end: 'bottom 5%',
           scrub: 1,
           pin: true,
-          // ease: "power2.out",
         }
     });
 
     const screenWidth = window.innerWidth;
     let textXValue;
+    let imageScale;
 
-    if (screenWidth >= 1024) {
+    if (screenWidth >= 1536) {
       textXValue = "-26%";
+      imageScale = 1.4
+    } else if (screenWidth >= 1024) {
+      textXValue = "-50%";
+      imageScale = 1.2
     } else if (screenWidth >= 768) {
-      textXValue = "-60%";
+      textXValue = "-50%";
+      imageScale = 1.3
     } else { 
-      textXValue = "-65%";
+      textXValue = "-50%";
+      imageScale = 1.3
     }
 
     parkingSolutionTimeLine
-      .from(refs.text.current, { y: "35%", x: textXValue, textAlign: "left", duration: 3 })
-      .from(refs.image.current, { y: "-45%", x: "20vw", duration: 3 })
+      .from(refs.text.current, { y: "80%", x: textXValue, textAlign: "left", duration: 6, ease: "power4.in" })
+      .from(refs.image.current, { y: "-45%", x: "23vw", scale: imageScale, duration: 6, ease: "power4.in" }, "<")
       .from(refs.carLeft1.current, { x: "-100vw", delay: 0.5, duration: 2 })
       .from(refs.carRight1.current, { x: "100vw", delay: 1, duration: 2 })
       .from(refs.carLeft2.current, { x: "-100vw", delay: 1.5, duration: 2 })
@@ -123,11 +129,11 @@ const ParkingSolution: React.FC = () => {
       <div className="mx-auto xl:px-20 md:px-10 px-6 w-full">
         <div 
             id="car-lifts-section" 
-            className="h-full xl:h-[80vh]"
+            className="h-full"
         >
           <div 
             ref={refs.text} 
-            className="block mx-auto text-center xl:mt-24 md:mt-16 mt-12 2xl:w-2/3 lg:w-2/4 w-2/5" 
+            className="block mx-auto text-center xl:mt-24 md:mt-16 mt-12 2xl:w-2/3 w-2/4" 
             id="car-lifts-text"
           >
             <h2 className="text-[#05B6C7] 2xl:text-6xl lg:text-4xl md:text-3xl text-xl w-full font-semibold xl:pb-5 pb-4 uppercase">
@@ -135,12 +141,12 @@ const ParkingSolution: React.FC = () => {
               {/* {title} */}
             </h2>
             <p className="2xl:text-3xl md:text-xl text-base font-normal w-full">
-              Maximizing the effeciency via technological parking sollution.
+              Maximizing the effeciency via technological<br/>parking sollution.
             </p>
           </div>
           <div
             ref={refs.image} 
-            className="xl:mt-24 md:mt-16 mt-12 2xl:w-2/3 w-2/4 relative block mx-auto" 
+            className="xl:mt-24 md:mt-16 mt-12 2xl:w-2/3 w-2/4 relative block mx-auto text-white" 
             id="car-lifts-image"
           >
             <div className="2xl:max-w-[660px] lg:max-w-2/3 max-w-1/3 w-full block mx-auto">
@@ -158,56 +164,56 @@ const ParkingSolution: React.FC = () => {
             </div>
             <p 
                 ref={refs.carLeft1} 
-                className="bg-[#05B6C7] px-4 py-3 rounded font-semibold 2xl:text-xl md:text-base text-sm absolute top-[10%] left-[6%] lg:block hidden"
+                className="bg-[#05B6C7] px-4 lg:py-3 py-[6px] rounded font-semibold 2xl:text-xl md:text-base text-sm absolute xl:top-[10%] top-[-15%] 2xl:left-[-6%] left-[-50%] md:block hidden"
             >
                 SAFE AND SILENT
             </p>
             
-            <p ref={refs.carLeft2} className="bg-[#05B6C7] px-4 py-3 rounded font-semibold 2xl:text-xl md:text-base text-sm absolute top-[25%] left-[8%] car-left-2 lg:block hidden">
+            <p ref={refs.carLeft2} className="bg-[#05B6C7] px-4 lg:py-3 py-[6px] rounded font-semibold 2xl:text-xl md:text-base text-sm absolute xl:top-[25%] top-[5%]  2xl:left-[-4%] left-[-48%] car-left-2 md:block hidden">
               SAFE AND SILENT
             </p>
             
-            <p ref={refs.carLeft3} className="bg-[#05B6C7] px-4 py-3 rounded font-semibold 2xl:text-xl md:text-base text-sm absolute top-[40%] left-[10%] car-left-3 lg:block hidden">
+            <p ref={refs.carLeft3} className="bg-[#05B6C7] px-4 lg:py-3 py-[6px] rounded font-semibold 2xl:text-xl md:text-base text-sm absolute xl:top-[40%] top-[25%]  2xl:left-[-2%] left-[-46%] car-left-3 md:block hidden">
               SAFE AND SILENT
             </p>
             
-            <p ref={refs.carLeft4} className="bg-[#05B6C7] px-4 py-3 rounded font-semibold 2xl:text-xl md:text-base text-sm absolute top-[60%] left-[12%] car-left-4 lg:block hidden">
+            <p ref={refs.carLeft4} className="bg-[#05B6C7] px-4 lg:py-3 py-[6px] rounded font-semibold 2xl:text-xl md:text-base text-sm absolute xl:top-[60%] top-[50%]  2xl:left-[0%] left-[-44%] car-left-4 md:block hidden">
               SAFE AND SILENT
             </p>
             
-            <p ref={refs.carLeft5} className="bg-[#05B6C7] px-4 py-3 rounded font-semibold 2xl:text-xl md:text-base text-sm absolute top-[75%] left-[5%] car-left-5 lg:block hidden">
+            <p ref={refs.carLeft5} className="bg-[#05B6C7] px-4 lg:py-3 py-[6px] rounded font-semibold 2xl:text-xl md:text-base text-sm absolute xl:top-[75%] top-[70%]  2xl:left-[-5%] left-[-49%] car-left-5 md:block hidden">
               SAFE AND SILENT
             </p>
             
-            <p ref={refs.carLeft6} className="bg-[#05B6C7] px-4 py-3 rounded font-semibold 2xl:text-xl md:text-base text-sm absolute top-[90%] left-[6%] car-left-6 lg:block hidden">
+            <p ref={refs.carLeft6} className="bg-[#05B6C7] px-4 lg:py-3 py-[6px] rounded font-semibold 2xl:text-xl md:text-base text-sm absolute xl:top-[90%] top-[90%]  2xl:left-[-3%] left-[-48%] car-left-6 md:block hidden">
               SAFE AND SILENT
             </p>
-            <p ref={refs.carRight1} className="bg-[#05B6C7] px-4 py-3 rounded font-semibold 2xl:text-xl md:text-base text-sm absolute top-[10%] right-[10%] car-right-1 lg:block hidden">
-              SAFE AND SILENT
-            </p>
-            
-            <p ref={refs.carRight2} className="bg-[#05B6C7] px-4 py-3 rounded font-semibold 2xl:text-xl md:text-base text-sm absolute top-[25%] right-[7%] car-right-2 lg:block hidden">
+            <p ref={refs.carRight1} className="bg-[#05B6C7] px-4 lg:py-3 py-[6px] rounded font-semibold 2xl:text-xl md:text-base text-sm absolute xl:top-[10%] top-[-15%]  2xl:right-[-2%] right-[-46%] car-right-1 md:block hidden">
               SAFE AND SILENT
             </p>
             
-            <p ref={refs.carRight3} className="bg-[#05B6C7] px-4 py-3 rounded font-semibold 2xl:text-xl md:text-base text-sm absolute top-[40%] right-[9%] car-right-3 lg:block hidden">
+            <p ref={refs.carRight2} className="bg-[#05B6C7] px-4 lg:py-3 py-[6px] rounded font-semibold 2xl:text-xl md:text-base text-sm absolute xl:top-[25%] top-[5%]  2xl:right-[-5%] right-[-49%] car-right-2 md:block hidden">
               SAFE AND SILENT
             </p>
             
-            <p ref={refs.carRight4} className="bg-[#05B6C7] px-4 py-3 rounded font-semibold 2xl:text-xl md:text-base text-sm absolute top-[60%] right-[6%] car-right-4 lg:block hidden">
+            <p ref={refs.carRight3} className="bg-[#05B6C7] px-4 lg:py-3 py-[6px] rounded font-semibold 2xl:text-xl md:text-base text-sm absolute xl:top-[40%] top-[25%]  2xl:right-[-3%] right-[-47%] car-right-3 md:block hidden">
               SAFE AND SILENT
             </p>
             
-            <p ref={refs.carRight5} className="bg-[#05B6C7] px-4 py-3 rounded font-semibold 2xl:text-xl md:text-base text-sm absolute top-[75%] right-[8%] car-right-5 lg:block hidden">
+            <p ref={refs.carRight4} className="bg-[#05B6C7] px-4 lg:py-3 py-[6px] rounded font-semibold 2xl:text-xl md:text-base text-sm absolute xl:top-[60%] top-[50%]  2xl:right-[-6%] right-[-50%] car-right-4 md:block hidden">
               SAFE AND SILENT
             </p>
             
-            <p ref={refs.carRight6} className="bg-[#05B6C7] px-4 py-3 rounded font-semibold 2xl:text-xl md:text-base text-sm absolute top-[90%] right-[4%] car-right-6 lg:block hidden">
+            <p ref={refs.carRight5} className="bg-[#05B6C7] px-4 lg:py-3 py-[6px] rounded font-semibold 2xl:text-xl md:text-base text-sm absolute xl:top-[75%] top-[70%] 2xl:right-[-4%] right-[-48%] car-right-5 md:block hidden">
+              SAFE AND SILENT
+            </p>
+            
+            <p ref={refs.carRight6} className="bg-[#05B6C7] px-4 lg:py-3 py-[6px] rounded font-semibold 2xl:text-xl md:text-base text-sm absolute xl:top-[90%] top-[90%] 2xl:right-[-8%] right-[-52%] car-right-6 md:block hidden">
               SAFE AND SILENT
             </p>
           </div>
         </div>
-        <div>
+        <div className="lg:mt-20 mt-12">
           <div className="flex justify-center items-center xl:gap-8 gap-3 md:flex-row flex-col">
             {["Datasheet", "Project Reports", "DWG and 3D Models"].map((text, index) => (
               <button

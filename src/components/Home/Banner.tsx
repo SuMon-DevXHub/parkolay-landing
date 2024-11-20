@@ -31,41 +31,7 @@ const Banner: React.FC = () => {
   };
 
   return (
-    <div className="hero-section text-white text-center relative max-w-[1920px] w-full mx-auto">
-      <div
-        className="absolute left-1/2 -translate-x-1/2 top-1/4 -translate-y-1/4 z-10 w-full"
-      >
-        <div className="md:px-10 px-6 xl:px-20">
-          <div
-            className="text-white font-semibold md:text-xl text-base flex justify-center items-center xl:gap-5 gap-3"
-          >
-            <p
-              className="border border-white rounded-full lg:px-6 px-3 lg:py-2 py-[6px] hover:bg-[#05B6C7] hover:border-[#05B6C7]"
-            >
-              Adaptive
-            </p>
-            <p
-              className="border border-white rounded-full lg:px-6 px-4 py-2 hover:bg-[#05B6C7] hover:border-[#05B6C7]"
-            >
-              Creative
-            </p>
-            <p
-              className="border border-white rounded-full lg:px-6 px-4 py-2 hover:bg-[#05B6C7] hover:border-[#05B6C7]"
-            >
-              Reliable
-            </p>
-          </div>
-          <h1
-            className="xl:text-[56px] md:text-[40px] text-2xl font-semibold my-3 md:my-6 xl:my-16"
-          >
-            BETTER PARKING EXPERIENCE
-          </h1>
-          <p className="text-lg md:text-2xl font-normal">
-            Peak your park comfort with user-friendly design and software...
-          </p>
-        </div>
-      </div>
-
+    <div className="hero-section relative div-overlay text-white text-center 2xl:max-w-[1920px] min-[1920px]:max-w-full min-h-[300px] max-h-[980px] w-full mx-auto">
       <Swiper
         spaceBetween={30}
         effect={"fade"}
@@ -85,7 +51,7 @@ const Banner: React.FC = () => {
         {videos?.map((video, index) => (
           <SwiperSlide key={index} className="video-slide w-full banner-slides">
             <video
-              className="w-full object-cover aspect-video"
+              className="w-full object-cover aspect-video min-h-[300px] max-h-[980px]"
               autoPlay
               loop
               muted
@@ -95,6 +61,28 @@ const Banner: React.FC = () => {
           </SwiperSlide>
         ))}
       </Swiper>
+
+      <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 z-10 w-full">
+        <div className="md:px-10 px-6 xl:px-20">
+          <div className="text-white font-semibold md:text-xl text-base flex justify-center items-center xl:gap-5 gap-3">
+            <p className="border border-white rounded-full lg:px-6 px-3 lg:py-2 py-[6px] hover:bg-[#05B6C7] hover:border-[#05B6C7]">
+              Adaptive
+            </p>
+            <p className="border border-white rounded-full lg:px-6 px-4 py-2 hover:bg-[#05B6C7] hover:border-[#05B6C7]">
+              Creative
+            </p>
+            <p className="border border-white rounded-full lg:px-6 px-4 py-2 hover:bg-[#05B6C7] hover:border-[#05B6C7]">
+              Reliable
+            </p>
+          </div>
+          <h1 className="xl:text-[56px] md:text-[40px] text-2xl font-semibold my-3 md:my-6 xl:my-16">
+            BETTER PARKING EXPERIENCE
+          </h1>
+          <p className="text-lg md:text-2xl font-normal">
+            Peak your park comfort with user-friendly design and software...
+          </p>
+        </div>
+      </div>
     </div>
   );
 };

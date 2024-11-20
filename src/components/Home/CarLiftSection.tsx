@@ -7,6 +7,25 @@ const CarLiftSection: React.FC = () => {
   const [isClient, setIsClient] = React.useState(false);
   const lastScrollPosition = React.useRef(0);
   const lastTimeUpdate = React.useRef(0);
+  const [videoHeight, setVideoHeight] = React.useState(0);
+
+  const logVideoDimensions = () => {
+    if (videoRef.current) {
+      const height = videoRef.current.clientHeight;
+      const naturalHeight = videoRef.current.videoHeight;
+      const offsetHeight = videoRef.current.offsetHeight;
+      const boundingHeight = videoRef.current.getBoundingClientRect().height;
+
+      console.log("Video Dimensions:", {
+        clientHeight: height,
+        naturalHeight: naturalHeight,
+        offsetHeight: offsetHeight,
+        boundingHeight: boundingHeight,
+      });
+
+      setVideoHeight(height);
+    }
+  };
 
   React.useEffect(() => {
     setIsClient(true);
@@ -20,12 +39,20 @@ const CarLiftSection: React.FC = () => {
 
     if (!video || !container) return;
 
+    video.addEventListener("loadedmetadata", logVideoDimensions);
+
+    video.addEventListener("loadeddata", logVideoDimensions);
+
+    setTimeout(logVideoDimensions, 100);
+
     const handleVideoLoad = () => {
       const playbackConst = 1000;
       const extraPadding = 1.5 * playbackConst;
       container.style.height = `${
-        Math.floor(video.duration) * playbackConst + extraPadding
+        Math.floor(video.duration) * playbackConst + extraPadding - 2000
       }px`;
+
+      logVideoDimensions();
     };
 
     if (video.readyState >= 2) {
@@ -33,6 +60,16 @@ const CarLiftSection: React.FC = () => {
     } else {
       video.addEventListener("loadeddata", handleVideoLoad);
     }
+
+    const resizeObserver = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        if (entry.target === video) {
+          logVideoDimensions();
+        }
+      }
+    });
+
+    resizeObserver.observe(video);
 
     const lerp = (start: number, end: number, factor: number) => {
       return start + (end - start) * factor;
@@ -82,6 +119,9 @@ const CarLiftSection: React.FC = () => {
         window.cancelAnimationFrame(animationFrame);
       }
       video.removeEventListener("loadeddata", handleVideoLoad);
+      video.removeEventListener("loadedmetadata", logVideoDimensions);
+      video.removeEventListener("loadeddata", logVideoDimensions);
+      resizeObserver.disconnect();
     };
   }, [isClient]);
 
@@ -91,13 +131,19 @@ const CarLiftSection: React.FC = () => {
 
   return (
     <div ref={containerRef} className="relative pb-28">
-      <div className="sticky top-0">
+      <div
+        className={`sticky`}
+        style={{
+          top: `calc(50% - ${videoHeight / 2}px)`,
+        }}
+      >
         <video
           ref={videoRef}
           className="h-full w-full object-cover"
           preload="auto"
           playsInline
           muted
+          onLoad={logVideoDimensions}
         >
           <source src={carParking} type="video/mp4" />
         </video>

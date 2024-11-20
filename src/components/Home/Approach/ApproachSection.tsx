@@ -55,20 +55,16 @@ const Approach: React.FC = () => {
   return (
     <div className="overflow-hidden max-w-[1920px] w-full block mx-auto">
       <div className="xl:px-20 md:px-10 px-6 w-full block mx-auto">
-        <h2
-          className="text-[#05B6C7] xl:text-5xl lg:text-3xl text-2xl text-center font-semibold"
-        >
+        <h2 className="text-[#05B6C7] xl:text-5xl lg:text-3xl text-2xl text-center font-semibold">
           OUR APPROCH
         </h2>
-        <p
-          className="font-medium xl:text-2xl text-lg text-center mt-5 mb-10 max-w-[1140px] w-full block mx-auto"
-        >
+        <p className="font-medium xl:text-2xl text-lg text-center mt-5 mb-10 max-w-[1140px] w-full block mx-auto">
           We consider each project as a pertnership and we act as expert
           advisers to produce customized parking sollutions in challenging areas
           of our customers.
         </p>
 
-        <div className="xl:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 grid gap-4 text-center md:text-left xl:mt-10 mt-6">
+        <div className="xl:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 grid gap-4 xl:gap-5 text-center md:text-left xl:mt-10 mt-6">
           {approaches.map((approach, index) => (
             <ApproachCard approach={approach} key={index} />
           ))}

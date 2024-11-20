@@ -15,13 +15,14 @@ const increaseCapacitySchema = {
   "@context": "https://schema.org",
   "@type": "Product",
   name: "Capacity Increase Solutions",
-  description: "Advanced parking capacity solutions for maximizing space efficiency",
+  description:
+    "Advanced parking capacity solutions for maximizing space efficiency",
   category: "Parking Solutions",
   manufacturer: {
     "@type": "Organization",
     name: "Parkolay",
-    url: "https://parkolay.com"
-  }
+    url: "https://parkolay.com",
+  },
 };
 
 const slides = [
@@ -29,42 +30,41 @@ const slides = [
     video: carParking1,
     title: "Parkonfor 11",
     description: "2 Level puzzle system without pit",
-    slug:"parkonfor11"
+    slug: "parkonfor11",
   },
   {
     video: carParking2,
     title: "Parkonfor 11o",
     description: "2 Level puzzle system with pit",
-    slug:"parkonfor110"
+    slug: "parkonfor110",
   },
   {
     video: carParking3,
     title: "Parkonfor 111",
     description: "3 Level puzzle system with pit",
-    slug:"parkonfor111"
+    slug: "parkonfor111",
   },
   {
     video: carParking4,
     title: "Parkonfor 110 PT",
     description: "2 Level Pass-thru puzzle system with pit",
-    slug:"parkonfor110pt"
+    slug: "parkonfor110pt",
   },
   {
     video: carParking5,
     title: "Parkonfor 11 PT",
     description: "2 Level puzzle system without pit",
-    slug:"parkonfor11pt"
+    slug: "parkonfor11pt",
   },
   {
     video: carParking6,
     title: "Parkonfor 111 PT",
     description: "3 Level Pass-thru puzzle system with pit",
-    slug:"parkonfor111pt"
+    slug: "parkonfor111pt",
   },
 ];
 
 const IncreaseCapacity: React.FC = () => {
-  
   const swiperRef = useRef<any>(null);
   const videoRefs = useRef<{ [key: number]: HTMLVideoElement | null }>({});
 
@@ -167,12 +167,27 @@ export default React.memo(IncreaseCapacity);
 export const Head: HeadFC = () => (
   <>
     <title>Capacity Increase Solutions | Parkolay</title>
-    <meta name="description" content="Advanced parking capacity solutions for maximizing space efficiency in modern parking systems" />
-    <meta name="keywords" content="parking capacity, space optimization, smart parking, parking management, Parkolay" />
-    <meta property="og:title" content="Capacity Increase Solutions | Parkolay" />
-    <meta property="og:description" content="Advanced parking capacity solutions for maximizing space efficiency in modern parking systems" />
+    <meta
+      name="description"
+      content="Advanced parking capacity solutions for maximizing space efficiency in modern parking systems"
+    />
+    <meta
+      name="keywords"
+      content="parking capacity, space optimization, smart parking, parking management, Parkolay"
+    />
+    <meta
+      property="og:title"
+      content="Capacity Increase Solutions | Parkolay"
+    />
+    <meta
+      property="og:description"
+      content="Advanced parking capacity solutions for maximizing space efficiency in modern parking systems"
+    />
     <meta property="og:type" content="product" />
-    <link rel="canonical" href="https://parkolay.com/products/increase-capacity" />
+    <link
+      rel="canonical"
+      href="https://parkolay.com/products/increase-capacity"
+    />
     <script type="application/ld+json">
       {JSON.stringify(increaseCapacitySchema)}
     </script>
