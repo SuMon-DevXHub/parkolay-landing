@@ -69,9 +69,9 @@ const ParkingSolution: React.FC = () => {
     const parkingSolutionTimeLine = gsap.timeline({
         scrollTrigger: {
           trigger: refs.section.current,
-          start: 'top 5%',
-          end: 'bottom 5%',
-          scrub: 1,
+          start: 'top top',
+          end: "+=5500",
+          scrub: 3,
           pin: true,
         }
     });
@@ -97,18 +97,18 @@ const ParkingSolution: React.FC = () => {
     parkingSolutionTimeLine
       .from(refs.text.current, { y: "80%", x: textXValue, textAlign: "left", duration: 6, ease: "power4.in" })
       .from(refs.image.current, { y: "-45%", x: "23vw", scale: imageScale, duration: 6, ease: "power4.in" }, "<")
-      .from(refs.carLeft1.current, { x: "-100vw", delay: 0.5, duration: 2 })
-      .from(refs.carRight1.current, { x: "100vw", delay: 1, duration: 2 })
-      .from(refs.carLeft2.current, { x: "-100vw", delay: 1.5, duration: 2 })
-      .from(refs.carRight2.current, { x: "100vw", delay: 2, duration: 2 })
-      .from(refs.carLeft3.current, { x: "-100vw", delay: 2.5, duration: 2 })
-      .from(refs.carRight3.current, { x: "100vw", delay: 3, duration: 2 })
-      .from(refs.carLeft4.current, { x: "-100vw", delay: 3.5, duration: 2 })
-      .from(refs.carRight4.current, { x: "100vw", delay: 4, duration: 2 })
-      .from(refs.carLeft5.current, { x: "-100vw", delay: 4.5, duration: 2 })
-      .from(refs.carRight5.current, { x: "100vw", delay: 5, duration: 2 })
-      .from(refs.carLeft6.current, { x: "-100vw", delay: 5.5, duration: 2 })
-      .from(refs.carRight6.current, { x: "100vw", delay: 6, duration: 2 });
+      .from(refs.carLeft1.current, { x: "-250%", ease: "linear", opacity: 0})
+      .from(refs.carRight1.current, { x: "250%", ease: "linear", opacity: 0})
+      .from(refs.carLeft2.current, { x: "-250%", ease: "linear", opacity: 0})
+      .from(refs.carRight2.current, { x: "250%", ease: "linear", opacity: 0})
+      .from(refs.carLeft3.current, { x: "-250%", ease: "linear", opacity: 0})
+      .from(refs.carRight3.current, { x: "250%", ease: "linear", opacity: 0})
+      .from(refs.carLeft4.current, { x: "-250%", ease: "linear", opacity: 0})
+      .from(refs.carRight4.current, { x: "250%", ease: "linear", opacity: 0})
+      .from(refs.carLeft5.current, { x: "-250%", ease: "linear", opacity: 0})
+      .from(refs.carRight5.current, { x: "250%", ease: "linear", opacity: 0})
+      .from(refs.carLeft6.current, { x: "-250%", ease: "linear", opacity: 0})
+      .from(refs.carRight6.current, { x: "250%", ease: "linear", opacity: 0});
 
     return () => {
       parkingSolutionTimeLine.kill();
@@ -151,7 +151,7 @@ const ParkingSolution: React.FC = () => {
           >
             <div className="2xl:max-w-[660px] lg:max-w-2/3 max-w-1/3 w-full block mx-auto">
               <StaticImage
-                src="../../assets/images/car_lifts.svg"
+                src="../../assets/images/Jpg/car_lift_hero-section_removebg.png"
                 alt="Car lift system showing vertical transportation mechanism"
                 className="block"
                 placeholder="blurred"

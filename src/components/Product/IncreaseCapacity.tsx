@@ -9,7 +9,13 @@ import carParking3 from "../../assets/videos/car_parking_white.mp4";
 import carParking4 from "../../assets/videos/car_parking_white.mp4";
 import carParking5 from "../../assets/videos/car_parking_white.mp4";
 import carParking6 from "../../assets/videos/car_parking_white.mp4";
+import slide1 from "../../assets/images/car_lifts.jpg";
+import slide2 from "../../assets/images/firstparkcar.png";
+import slide3 from "../../assets/images/car_lifts_3.jpg";
+import slide4 from "../../assets/images/firstcar.png";
+
 import { HeadFC, Link } from "gatsby";
+import { StaticImage } from "gatsby-plugin-image";
 
 const increaseCapacitySchema = {
   "@context": "https://schema.org",
@@ -28,36 +34,42 @@ const increaseCapacitySchema = {
 const slides = [
   {
     video: carParking1,
+    image: slide1,
     title: "Parkonfor 11",
     description: "2 Level puzzle system without pit",
     slug: "parkonfor11",
   },
   {
     video: carParking2,
+    image: slide2,
     title: "Parkonfor 11o",
     description: "2 Level puzzle system with pit",
     slug: "parkonfor110",
   },
   {
     video: carParking3,
+    image: slide3,
     title: "Parkonfor 111",
     description: "3 Level puzzle system with pit",
     slug: "parkonfor111",
   },
   {
     video: carParking4,
+    image: slide4,
     title: "Parkonfor 110 PT",
     description: "2 Level Pass-thru puzzle system with pit",
     slug: "parkonfor110pt",
   },
   {
     video: carParking5,
+    image: slide1,
     title: "Parkonfor 11 PT",
     description: "2 Level puzzle system without pit",
     slug: "parkonfor11pt",
   },
   {
     video: carParking6,
+    image: slide3,
     title: "Parkonfor 111 PT",
     description: "3 Level Pass-thru puzzle system with pit",
     slug: "parkonfor111pt",
@@ -87,9 +99,9 @@ const IncreaseCapacity: React.FC = () => {
   }, []);
 
   return (
-    <div className="overflow-hidden max-w-[1920px] w-full block mx-auto">
+    <div className="overflow-hidden max-w-[1920px] w-full block mx-auto py-10 lg:py-0">
       <div className="mx-auto xl:px-20 md:px-10 px-6 w-full">
-        <h2 className="font-semibold xl:text-[44px] md:text-3xl text-2xl text-center">
+        <h2 className="font-semibold text-2xl md:text-3xl xl:text-[44px] min-[2500px]:text-6xl text-center">
           Increasing the capacity with stacking and adjoining the cars.
         </h2>
         <div className="mt-10">
@@ -97,11 +109,11 @@ const IncreaseCapacity: React.FC = () => {
             onSwiper={(swiper) => {
               swiperRef.current = swiper;
             }}
-            autoplay={{
-              delay: 3000,
-              disableOnInteraction: true,
-              pauseOnMouseEnter: true,
-            }}
+            // autoplay={{
+            //   delay: 3000,
+            //   disableOnInteraction: true,
+            //   pauseOnMouseEnter: true,
+            // }}
             loop={true}
             modules={[Autoplay]}
             className="mySwiper"
@@ -122,10 +134,10 @@ const IncreaseCapacity: React.FC = () => {
               >
                 <Link
                   to={`/products/${slide.slug}`}
-                  className="block rounded-md"
+                  className="block rounded-md w-[330px]"
                   aria-label={`Learn more about ${slide.title}: ${slide.description}`}
                 >
-                  <video
+                  {/* <video
                     ref={(el) => (videoRefs.current[index] = el)}
                     src={slide.video}
                     className="w-full border shadow-md rounded-md"
@@ -135,17 +147,14 @@ const IncreaseCapacity: React.FC = () => {
                     preload="auto"
                     aria-label={`${slide.title} demonstration video`}
                     role="presentation"
-                  />
-                  {/* <iframe
-                    ref={(el: any) => (videoRefs.current[index] = el)}
-                    src={slide.video}
-                    title={slide.title}
-                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                    frameBorder="0"
-                    allowFullScreen
-                    aria-label={`${slide.title} demonstration video`}
-                    role="presentation"
                   /> */}
+
+                  <img
+                    src={slide.image}
+                    className="w-[330px] border h-[186px] rounded-[10px]"
+                    alt={slide.title}
+                  />
+
                   <p className="text-[#05B6C7] font-semibold xl:text-3xl md:text-2xl text-xl mt-4 mb-2">
                     {slide.title}
                   </p>

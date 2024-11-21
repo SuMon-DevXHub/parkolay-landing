@@ -6,10 +6,10 @@ import rightArrow from "../../assets/images/right_arrow.svg";
 const OurClientSection: React.FC = () => {
   return (
     <div className="xl:mt-28 mt-16 overflow-hidden">
-      <div className="relative text-white mx-auto block max-h-[700px]">
-        <div className="aspect-w-16 aspect-h-9 w-full max-h-[700px]">
+      <div className="relative text-white mx-auto block max-h-[1280px]">
+        <div className="aspect-w-16 aspect-h-9 w-full max-h-[1280px]">
           <video
-            className="h-full w-full object-cover max-h-[700px]"
+            className="h-full w-full object-cover max-h-[1280px]"
             autoPlay
             muted
             loop
@@ -32,13 +32,9 @@ const OurClientSection: React.FC = () => {
           </button>
         </div>
       </div>
-      <div className="aspect-w-16 aspect-h-9 w-full pt-10 md:pt-[120px] max-h-[1080px]">
-        <video
-          className="h-full w-full object-cover max-h-[1080px]"
-          autoPlay
-          muted
-          loop
-        >
+
+      <div className="aspect-w-16 aspect-h-9 w-full pt-10 md:pt-[120px]">
+        <video className="h-full w-full object-cover" autoPlay muted loop>
           <source src={CarMoves} type="video/mp4" />
         </video>
       </div>

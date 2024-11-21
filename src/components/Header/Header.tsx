@@ -2,12 +2,10 @@ import React, { useCallback, useEffect } from "react";
 import { Link } from "gatsby";
 import { StaticImage } from "gatsby-plugin-image";
 import { useLocation } from "@reach/router";
-
 interface NavItem {
   path: string;
   label: string;
 }
-
 const navItems: NavItem[] = [
   { path: "/", label: "Our Approach" },
   { path: "/products/", label: "Products" },
@@ -16,10 +14,8 @@ const navItems: NavItem[] = [
   { path: "/blog/", label: "Blog" },
   { path: "/news/", label: "News" },
 ];
-
 const Header: React.FC = () => {
   const location = useLocation();
-
   // Handle escape key to close sidebar
   useEffect(() => {
     const handleEscKey = (event: KeyboardEvent) => {
@@ -32,11 +28,9 @@ const Header: React.FC = () => {
         }
       }
     };
-
     document.addEventListener("keydown", handleEscKey);
     return () => document.removeEventListener("keydown", handleEscKey);
   }, []);
-
   // Handle body scroll lock when sidebar is open
   useEffect(() => {
     const sidebar = document.getElementById("sidebar");
@@ -54,21 +48,17 @@ const Header: React.FC = () => {
         }
       });
     });
-
     if (sidebar) {
       observer.observe(sidebar, { attributes: true });
     }
-
     return () => observer.disconnect();
   }, []);
-
   const toggleSidebar = useCallback(() => {
     const sidebar = document.getElementById("sidebar");
     const overlay = document.getElementById("overlay");
     sidebar?.classList.toggle("translate-x-full");
     overlay?.classList.toggle("hidden");
   }, []);
-
   const NavLink: React.FC<NavItem> = ({ path, label }) => {
     const isActive = location.pathname === path;
     return (
@@ -83,7 +73,6 @@ const Header: React.FC = () => {
       </Link>
     );
   };
-
   return (
     <div className="w-full bg-white shadow-md" role="banner">
       <header className="max-w-[1920px] mx-auto flex items-center justify-between xl:py-5 py-5 md:px-10 px-6 xl:px-20 text-[#53575A]">
@@ -101,7 +90,6 @@ const Header: React.FC = () => {
             />
           </Link>
         </div>
-
         <nav
           className="hidden xl:space-x-8 space-x-4 lg:flex"
           role="navigation"
@@ -111,7 +99,6 @@ const Header: React.FC = () => {
             <NavLink key={item.path} {...item} />
           ))}
         </nav>
-
         <Link
           to="/contact"
           className="hidden px-5 2xl:py-4 md:py-3 py-2 text-white bg-[#05B6C7] rounded-full xl:text-xl text-lg font-semibold lg:flex justify-center items-center gap-2 group hover:bg-[#049DAC] transition-colors duration-200"
@@ -127,7 +114,6 @@ const Header: React.FC = () => {
             aria-hidden="true"
           />
         </Link>
-
         <button
           className="lg:hidden focus:outline-none p-2"
           onClick={toggleSidebar}
@@ -145,14 +131,12 @@ const Header: React.FC = () => {
           />
         </button>
       </header>
-
       <div
         id="overlay"
-        className="fixed inset-0 bg-black bg-opacity-50 hidden lg:hidden"
+        className="fixed inset-0 bg-black bg-opacity-50 z-50 hidden lg:hidden"
         onClick={toggleSidebar}
         role="presentation"
       />
-
       <aside
         id="sidebar"
         className="fixed top-0 right-0 w-64 h-full bg-white shadow-md transform translate-x-full transition-transform duration-300 xl:hidden z-50"
@@ -202,8 +186,8 @@ const Header: React.FC = () => {
                   to={item.path}
                   className={`font-semibold text-lg transition-colors duration-200 py-2 ${
                     isActive
-                      ? "text-black"
-                      : "text-[#53575A] hover:text-gray-900"
+                      ? "text-[#05B6C7]"
+                      : "text-[#53575A] hover:text-[#05B6C7]"
                   }`}
                   onClick={toggleSidebar}
                   aria-current={isActive ? "page" : undefined}
@@ -233,5 +217,4 @@ const Header: React.FC = () => {
     </div>
   );
 };
-
 export default Header;
