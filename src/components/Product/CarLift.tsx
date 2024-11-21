@@ -4,7 +4,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { StaticImage } from "gatsby-plugin-image";
 import { HeadFC, Link } from "gatsby";
 
-if (typeof window !== 'undefined') {
+if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
@@ -23,8 +23,8 @@ const carLiftSchema = {
   manufacturer: {
     "@type": "Organization",
     name: "Parkolay",
-    url: "https://parkolay.com"
-  }
+    url: "https://parkolay.com",
+  },
 };
 
 const CarLift: React.FC = () => {
@@ -36,7 +36,8 @@ const CarLift: React.FC = () => {
 
   // Memoize animation setup
   const setupAnimation = useCallback(() => {
-    if (!refs.section.current || !refs.image.current || !refs.text.current) return;
+    if (!refs.section.current || !refs.image.current || !refs.text.current)
+      return;
 
     const carLiftTimeline = gsap.timeline();
 
@@ -60,7 +61,7 @@ const CarLift: React.FC = () => {
 
     return () => {
       carLiftTimeline.kill();
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
   }, []);
 
@@ -70,15 +71,15 @@ const CarLift: React.FC = () => {
   }, [setupAnimation]);
 
   return (
-    <div 
-      ref={refs.section} 
+    <div
+      ref={refs.section}
       className="overflow-hidden max-w-[1920px] w-full block mx-auto"
       aria-label="Car Lift Solutions"
     >
       <div className="mx-auto xl:px-20 md:px-10 px-6 w-full mt-5">
         <div className="flex justify-between items-center gap-10 lg:flex-row flex-col-reverse h-full xl:h-[70vh] w-full">
-          <div 
-            ref={refs.text} 
+          <div
+            ref={refs.text}
             className="lg:w-1/2 w-full"
             role="region"
             aria-label="Car Lift Information"
@@ -101,14 +102,14 @@ const CarLift: React.FC = () => {
               <span className="xl:text-lg text-base">Learn More</span>
             </Link>
           </div>
-          <div 
-            ref={refs.image} 
+          <div
+            ref={refs.image}
             className="lg:w-1/2 w-full"
             role="img"
             aria-label="Car lift illustration"
           >
             <StaticImage
-              src="../../assets/images/car_lifts.svg"
+              src="../../assets/images/car_lifts.jpg"
               alt="Car lift system showing vertical transportation mechanism"
               className="block ml-auto md:mr-0 mr-auto shadow-md lg:p-12 p-4 object-cover"
               placeholder="blurred"
@@ -130,9 +131,10 @@ export default CarLift;
 export const Head: HeadFC = () => (
   <>
     <title>Car Lift Systems | Parkolay</title>
-    <meta name="description" content="Space-saving car lift system for efficient garage floor access" />
-    <script type="application/ld+json">
-      {JSON.stringify(carLiftSchema)}
-    </script>
+    <meta
+      name="description"
+      content="Space-saving car lift system for efficient garage floor access"
+    />
+    <script type="application/ld+json">{JSON.stringify(carLiftSchema)}</script>
   </>
 );

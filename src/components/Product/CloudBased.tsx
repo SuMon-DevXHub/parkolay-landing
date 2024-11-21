@@ -39,40 +39,70 @@ const CloudBased: React.FC = () => {
     if (!refs.section.current || !refs.image.current || !refs.text.current)
       return;
 
+    gsap.set(refs.text.current, {
+      x: "150%",
+    });
+
     const cloudBasedTimeline = gsap.timeline({
       scrollTrigger: {
         trigger: refs.section.current,
-        start: "top 20%",
-        end: "+=100%",
-        scrub: 1.5,
+        start: "top top",
+        end: "+=150%",
+        scrub: 3,
         pin: true,
         anticipatePin: 1,
-        onEnter: () => {
-          gsap.set(refs.text.current, { y: "150vh", opacity: 0 });
-        },
       },
     });
 
     // Set initial state
-    gsap.set(refs.text.current, { y: "150vh", opacity: 0 });
+    gsap.set(refs.text.current, {
+      y: "150vh",
+      opacity: 0,
+      translateX: "-50%",
+      left: "50%",
+    });
 
     // Animation sequence
     cloudBasedTimeline
       .to(refs.text.current, {
+        y: "50vh",
+        opacity: 0.3,
+        duration: 0.4,
+        ease: "linear",
+      })
+      .to(refs.text.current, {
+        y: "25vh",
+        opacity: 0.6,
+        duration: 0.4,
+        ease: "linear",
+      })
+      .to(refs.text.current, {
         y: 0,
         opacity: 1,
-        duration: 0.5,
-        ease: "power1.inOut",
+        duration: 0.4,
+        ease: "linear",
+      })
+      .to(
+        refs.text.current,
+        {
+          y: "-75vh",
+          opacity: 0,
+          duration: 1,
+          ease: "linear",
+        },
+        2
+      )
+      .to(refs.text.current, {
+        y: "-110vh",
+        opacity: 0,
+        duration: 1,
+        ease: "linear",
       })
       .to(refs.text.current, {
-        y: "-5%",
-        duration: 0.1,
-        ease: "power2.out",
-      })
-      .to(refs.text.current, {
-        y: "0%",
-        duration: 0.1,
-        ease: "power2.inOut",
+        y: "-150vh",
+        opacity: 0,
+        duration: 0.8,
+        ease: "linear",
       });
 
     return () => {
@@ -90,45 +120,38 @@ const CloudBased: React.FC = () => {
   return (
     <div
       ref={refs.section}
-      className="overflow-hidden w-full block mx-auto"
+      className="overflow-hidden w-full h-[100vh] block mx-auto"
       aria-label="Cloud-Based Parking Management"
       role="region"
     >
-      <div className="relative text-white mx-auto block cloud-section h-[880px] w-full">
+      <div className="relative text-white mx-auto block cloud-section h-full w-full">
         <div
           ref={refs.image}
-          className="w-full cloud-image absolute top-0 left-0 right-0 z-10 backdrop-brightness-50"
+          className="w-full h-full cloud-image absolute top-0 left-0 right-0 z-10 backdrop-brightness-50"
           role="img"
           aria-label="Cloud-based parking system illustration"
         >
           <StaticImage
-            src="../../assets/images/cloud.svg"
+            src="../../assets/images/cloud_based.webp"
             alt="Cloud-based parking management interface"
-            className="h-[880px] w-full object-cover"
+            className="h-full w-full object-cover div-overlay-plus"
             placeholder="blurred"
             loading="eager"
             formats={["auto", "webp", "avif"]}
             quality={95}
-            height={880}
             aria-hidden="true"
           />
         </div>
         <div
           ref={refs.text}
-          className="absolute -top-40 left-1/2 -translate-x-1/2 z-20 w-full max-w-[1920px] cloud-text"
+          className="absolute top-1/2 -translate-y-1/2 z-20 w-full max-w-[1920px] cloud-text"
           role="contentinfo"
         >
           <div className="w-full xl:w-[1400px] md:w-[700px] h-full text-3xl md:text-5xl xl:text-7xl font-bold mx-auto xl:px-20 md:px-10 px-6">
-            <h1
-              className="mt-3 mb-6 text-start"
-              id="cloud-title"
-            >
+            <h1 className="mt-3 mb-6 text-start" id="cloud-title">
               CLOUD BASED
             </h1>
-            <p
-              className="pl-8 md:pl-14 xl:pl-20"
-              aria-labelledby="cloud-title"
-            >
+            <p className="pl-8 md:pl-14 xl:pl-20" aria-labelledby="cloud-title">
               INTEGRATED TO TAPS AND PMX
             </p>
           </div>

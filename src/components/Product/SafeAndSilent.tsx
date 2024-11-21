@@ -2,8 +2,9 @@ import React, { useEffect, useRef, useCallback } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { StaticImage } from "gatsby-plugin-image";
-import { HeadFC } from "gatsby";
+import { HeadFC, Link } from "gatsby";
 
+// Register GSAP plugins safely for SSR
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
@@ -14,11 +15,13 @@ interface AnimationRefs {
   text: React.RefObject<HTMLDivElement>;
 }
 
-const complaintSchema = {
+// SEO Schema
+const ticketLessSolutionSchema = {
   "@context": "https://schema.org",
   "@type": "Product",
-  name: "EN14010 Compliant System",
-  description: "EN14010 compliant parking management system",
+  name: "TicketLess Parking Solution",
+  description:
+    "Advanced ticketLess parking system for modern parking management",
   category: "Parking Solutions",
   manufacturer: {
     "@type": "Organization",
@@ -27,7 +30,7 @@ const complaintSchema = {
   },
 };
 
-const Complaint: React.FC = () => {
+const SafeAndSilent: React.FC = () => {
   const refs: AnimationRefs = {
     section: useRef<HTMLDivElement>(null),
     image: useRef<HTMLDivElement>(null),
@@ -38,7 +41,7 @@ const Complaint: React.FC = () => {
     if (!refs.section.current || !refs.image.current || !refs.text.current)
       return;
 
-    const complaintTimeline = gsap.timeline({
+    const ticketLessSolutionTimeline = gsap.timeline({
       scrollTrigger: {
         trigger: refs.section.current,
         start: "top top",
@@ -46,64 +49,58 @@ const Complaint: React.FC = () => {
         scrub: 1.5,
         pin: true,
         anticipatePin: 1,
-        onEnter: () => {
-          gsap.set(refs.text.current, {
-            x: "50vw",
-            y: "50vh",
-            opacity: 0,
-            left: "50%",
-            right: "auto",
-            xPercent: 0,
-          });
-        },
       },
     });
 
     // Set initial state
     gsap.set(refs.text.current, {
-      x: "50vw",
-      y: "50vh",
+      y: "150vh",
       opacity: 0,
+      translateX: "-50%",
       left: "50%",
-      right: "auto",
-      xPercent: 0,
     });
 
-    // Animation sequence
-    complaintTimeline
-      // Move to center
+    ticketLessSolutionTimeline
       .to(refs.text.current, {
-        x: 0,
-        y: 0,
-        opacity: 1,
-        left: "50%",
-        right: "auto",
-        xPercent: -50,
+        y: "50vh",
+        opacity: 0.3,
         duration: 0.4,
         ease: "power1.inOut",
       })
-      // Short pause in center with centered text
       .to(refs.text.current, {
-        x: 0,
-        y: 0,
-        left: "50%",
-        right: "auto",
-        xPercent: -50,
-        duration: 0.2,
-      })
-      // Move to top left with right alignment
-      .to(refs.text.current, {
-        x: "-50vw",
-        y: "-50vh",
-        left: "auto",
-        right: "50%",
-        xPercent: 0,
+        y: "25vh",
+        opacity: 0.6,
         duration: 0.4,
-        ease: "power2.in",
-      });
+        ease: "power1.inOut",
+      })
+      .to(refs.text.current, {
+        y: 0,
+        opacity: 1,
+        duration: 0.4,
+        ease: "power1.inOut",
+      })
+      .to(refs.text.current, {
+        y: 0,
+        duration: 2,
+        ease: "none",
+      })
+      .to(refs.text.current, {
+        y: "-150vh",
+        opacity: 0,
+        duration: 0.6,
+        ease: "power2.inOut",
+      })
+      .to(
+        [refs.text.current, refs.image.current],
+        {
+          duration: 1,
+          ease: "none",
+        },
+        2
+      );
 
     return () => {
-      complaintTimeline.kill();
+      ticketLessSolutionTimeline.kill();
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
       refs.section.current?.removeAttribute("aria-hidden");
     };
@@ -118,20 +115,20 @@ const Complaint: React.FC = () => {
     <div
       ref={refs.section}
       className="overflow-hidden w-full h-[100vh] block mx-auto"
-      aria-label="EN14010 Compliant System"
+      aria-label="TicketLess Parking Solutions"
       role="region"
     >
-      <div className="relative text-white mx-auto block complain-section h-full w-full">
+      <div className="relative text-white mx-auto block ticketLess-section w-full h-[100vh]">
         <div
           ref={refs.image}
-          className="w-full h-full complain-image absolute top-0 left-0 right-0 z-10 backdrop-brightness-50"
+          className="w-full h-[100vh] ticketLess-image absolute top-0 left-0 right-0 z-10 backdrop-brightness-50"
           role="img"
-          aria-label="EN14010 compliant system illustration"
+          aria-label="TicketLess parking system background"
         >
           <StaticImage
-            src="../../assets/images/compliant.jpg"
-            alt="EN14010 compliant parking system"
-            className="h-full w-full object-cover div-overlay"
+            src="../../assets/images/safe_silent.webp"
+            alt="Modern ticketLess parking system"
+            className="w-full h-[100vh] object-cover div-overlay-plus"
             placeholder="blurred"
             loading="eager"
             formats={["auto", "webp", "avif"]}
@@ -141,43 +138,43 @@ const Complaint: React.FC = () => {
         </div>
         <div
           ref={refs.text}
-          className="absolute top-1/2 -translate-y-1/2 z-20 complain-text"
+          className="absolute top-1/2 -translate-y-1/2 z-20 w-full max-w-[1920px] ticketLess-text"
           role="contentinfo"
         >
-          <div className="text-white whitespace-nowrap text-3xl md:text-5xl xl:text-7xl font-bold mx-auto">
-            EN14010 COMPLIANT
-          </div>
+          <h1 className="text-white xl:text-7xl md:text-5xl text-3xl font-bold mt-3 mb-6 text-center">
+            SAFE AND SILENT
+          </h1>
         </div>
       </div>
     </div>
   );
 };
 
-export default Complaint;
+export default SafeAndSilent;
 
 export const Head: HeadFC = () => (
   <>
-    <title>EN14010 Compliant System | Parkolay</title>
+    <title>TicketLess Parking Solutions | Parkolay</title>
     <meta
       name="description"
-      content="EN14010 compliant parking management system"
+      content="Advanced ticketLess parking system for modern and efficient parking management"
     />
     <meta
       name="keywords"
-      content="EN14010, compliant parking, safety standards, parking solutions, Parkolay"
+      content="ticketLess parking, smart parking, parking management, Parkolay"
     />
-    <meta property="og:title" content="EN14010 Compliant System | Parkolay" />
+    <meta
+      property="og:title"
+      content="TicketLess Parking Solutions | Parkolay"
+    />
     <meta
       property="og:description"
-      content="EN14010 compliant parking management system"
+      content="Advanced ticketLess parking system for modern and efficient parking management"
     />
     <meta property="og:type" content="product" />
-    <link
-      rel="canonical"
-      href="https://parkolay.com/products/en14010-compliant"
-    />
+    <link rel="canonical" href="https://parkolay.com/products/ticketLess" />
     <script type="application/ld+json">
-      {JSON.stringify(complaintSchema)}
+      {JSON.stringify(ticketLessSolutionSchema)}
     </script>
   </>
 );

@@ -19,6 +19,7 @@ const CloudBased = lazy(() => import("../components/Product/CloudBased"));
 const WebBased = lazy(() => import("../components/Product/WebBased"));
 const Complaint = lazy(() => import("../components/Product/Complaint"));
 const EasyUse = lazy(() => import("../components/Product/EasyUse"));
+const SafeAndSilent = lazy(() => import("../components/Product/SafeAndSilent"));
 
 interface DataProps {
   site: {
@@ -71,6 +72,9 @@ const ProductsPage: React.FC<PageProps<DataProps>> = ({
         </section>
         <section aria-label="Easy to use all the feature">
           <EasyUse />
+        </section>
+        <section aria-label="Safe and silent parking">
+          <SafeAndSilent />
         </section>
       </Suspense>
     </Layout>
