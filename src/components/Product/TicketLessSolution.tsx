@@ -41,12 +41,16 @@ const TicketLessSolution: React.FC = () => {
     if (!refs.section.current || !refs.image.current || !refs.text.current)
       return;
 
+    gsap.set(refs.text.current, {
+      x: "150%",
+    });
+
     const ticketLessSolutionTimeline = gsap.timeline({
       scrollTrigger: {
         trigger: refs.section.current,
         start: "top top",
-        end: "+=100%",
-        scrub: 2,
+        end: "+=150%",
+        scrub: 3,
         pin: true,
         anticipatePin: 1,
       },
@@ -65,30 +69,41 @@ const TicketLessSolution: React.FC = () => {
         y: "50vh",
         opacity: 0.3,
         duration: 0.4,
-        ease: "power1.inOut",
+        ease: "linear",
       })
       .to(refs.text.current, {
         y: "25vh",
         opacity: 0.6,
         duration: 0.4,
-        ease: "power1.inOut",
+        ease: "linear",
       })
       .to(refs.text.current, {
         y: 0,
         opacity: 1,
         duration: 0.4,
-        ease: "power1.inOut",
+        ease: "linear",
       })
+      .to(
+        refs.text.current,
+        {
+          y: "-75vh",
+          opacity: 0,
+          duration: 1,
+          ease: "linear",
+        },
+        2
+      )
       .to(refs.text.current, {
-        y: 0,
+        y: "-110vh",
+        opacity: 0,
         duration: 1,
-        ease: "none",
+        ease: "linear",
       })
       .to(refs.text.current, {
         y: "-150vh",
         opacity: 0,
-        duration: 0.6,
-        ease: "power2.inOut",
+        duration: 0.8,
+        ease: "linear",
       });
 
     return () => {
@@ -110,7 +125,7 @@ const TicketLessSolution: React.FC = () => {
       aria-label="TicketLess Parking Solutions"
       role="region"
     >
-      <div className="relative text-white mx-auto block ticketLess-section w-full h-full">
+      <div className="relative text-white mx-auto block ticketLess-section h-full w-full">
         <div
           ref={refs.image}
           className="w-full h-full ticketLess-image absolute top-0 left-0 right-0 z-10 backdrop-brightness-50"
@@ -120,7 +135,7 @@ const TicketLessSolution: React.FC = () => {
           <StaticImage
             src="../../assets/images/ticketLess.webp"
             alt="Modern ticketLess parking system"
-            className="w-full h-full object-cover div-overlay-plus"
+            className="h-full w-full object-cover div-overlay-plus"
             placeholder="blurred"
             loading="eager"
             formats={["auto", "webp", "avif"]}
