@@ -4,9 +4,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { StaticImage } from "gatsby-plugin-image";
 import { HeadFC } from "gatsby";
 
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
+// if (typeof window !== "undefined") {
+//   gsap.registerPlugin(ScrollTrigger);
+// }
 
 interface AnimationRefs {
   section: React.RefObject<HTMLDivElement>;
@@ -179,20 +179,20 @@ const WebBased: React.FC = () => {
     return () => cleanup?.();
   }, [setupAnimation]);
 
-  const getScreenSize = useCallback(() => {
-    console.log(window.innerWidth, "check inner width");
-    const screenWidth = window.innerWidth;
+  // const getScreenSize = useCallback(() => {
+  //   console.log(window.innerWidth, "check inner width");
+  //   const screenWidth = window.innerWidth;
 
-    if (screenWidth >= 1536) {
-      setScreenSize("desktop");
-    } else if (screenWidth >= 1024) {
-      setScreenSize("tablet");
-    } else {
-      setScreenSize("mobile");
-    }
+  //   if (screenWidth >= 1536) {
+  //     setScreenSize("desktop");
+  //   } else if (screenWidth >= 1024) {
+  //     setScreenSize("tablet");
+  //   } else {
+  //     setScreenSize("mobile");
+  //   }
 
-    setupAnimation();
-  }, [window.innerWidth]);
+  //   setupAnimation();
+  // }, [window.innerWidth]);
 
   return (
     <div
