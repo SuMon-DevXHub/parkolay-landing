@@ -36,36 +36,78 @@ const FlexibleTariff: React.FC = () => {
     text: useRef<HTMLDivElement>(null),
   };
 
-  // Memoized animation setup with performance optimizations
   const setupAnimation = useCallback(() => {
     if (!refs.section.current || !refs.image.current || !refs.text.current)
       return;
 
-    gsap.set(refs.image.current, { opacity: 0, x: "-100%" });
-    gsap.set(refs.text.current, { opacity: 0, x: "100%" });
+    gsap.set(refs.image.current, {
+      opacity: 0,
+      x: "-150%", // Start from further left
+    });
+    gsap.set(refs.text.current, {
+      opacity: 0,
+      x: "150%", // Start from further right
+    });
 
     const flexibleTariffTimeline = gsap.timeline({
       scrollTrigger: {
         trigger: refs.section.current,
-        start: "top 20%",
-        end: "bottom bottom",
-        scrub: 1,
+        start: "top top",
+        end: "+=150%",
+        scrub: 3,
         pin: true,
       },
     });
 
     flexibleTariffTimeline
+      // Smooth entry for image
+      .to(refs.image.current, {
+        x: "-75%",
+        opacity: 0.3,
+        duration: 1,
+        ease: "power1.inOut",
+      })
+      .to(refs.image.current, {
+        x: "-25%",
+        opacity: 0.7,
+        duration: 1,
+        ease: "power1.inOut",
+      })
       .to(refs.image.current, {
         x: 0,
         opacity: 1,
-        duration: 10,
-        ease: "power4.in",
+        duration: 1,
+        ease: "power1.inOut",
+      })
+      // Pause after image enters
+      .to(refs.image.current, {
+        x: 0,
+        duration: 0.5,
+        ease: "none",
+      })
+      // Smooth entry for text
+      .to(refs.text.current, {
+        x: "75%",
+        opacity: 0.3,
+        duration: 1,
+        ease: "power1.inOut",
+      })
+      .to(refs.text.current, {
+        x: "25%",
+        opacity: 0.7,
+        duration: 1,
+        ease: "power1.inOut",
       })
       .to(refs.text.current, {
         x: 0,
         opacity: 1,
-        duration: 3,
-        ease: "power4.in",
+        duration: 1,
+        ease: "power1.inOut",
+      })
+      // Final pause with both elements in place
+      .to([refs.image.current, refs.text.current], {
+        duration: 1,
+        ease: "none",
       });
 
     return () => {
@@ -83,15 +125,15 @@ const FlexibleTariff: React.FC = () => {
   return (
     <div
       ref={refs.section}
-      className="overflow-hidden flex justify-center h-[800px] items-center max-w-[1920px] w-full mx-auto"
+      className="overflow-hidden flex justify-center h-[100vh] items-center max-w-[1920px] w-full mx-auto"
       aria-label="Flexible Parking Tariffs"
       role="region"
     >
-      <div className="mx-auto flex justify-center items-center xl:px-20 md:px-10 px-6 w-full ">
-        <div className="flex justify-center items-center gap-10 lg:flex-row  flex-col tariff-section">
+      <div className="mx-auto flex justify-center items-center xl:px-20 md:px-10 px-6 w-full h-full">
+        <div className="flex justify-center items-center gap-10 h-full lg:flex-row  flex-col tariff-section">
           <div
             ref={refs.image}
-            className="lg:w-1/2 w-full "
+            className="lg:w-1/2 w-full"
             role="img"
             aria-label="Flexible tariff system illustration"
           >
@@ -103,8 +145,6 @@ const FlexibleTariff: React.FC = () => {
               loading="eager"
               formats={["auto", "webp", "avif"]}
               quality={95}
-              width={682}
-              height={395}
             />
           </div>
           <div

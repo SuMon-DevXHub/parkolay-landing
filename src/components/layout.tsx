@@ -23,7 +23,7 @@ export const Layout: React.FC<LayoutProps> = ({ banner, children }) => {
       <Header />
       {banner && banner}
       <main
-        className="xl:space-y-[120px] md:space-y-16 space-y-12 mx-auto text-[#53575A]"
+        className="xl:space-y-[120px] md:space-y-16 mx-auto text-[#53575A]"
         id="main-content"
         role="main"
       >

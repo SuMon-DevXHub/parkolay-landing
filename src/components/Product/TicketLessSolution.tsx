@@ -37,7 +37,6 @@ const TicketLessSolution: React.FC = () => {
     text: useRef<HTMLDivElement>(null),
   };
 
-  // Memoized animation setup with performance optimizations
   const setupAnimation = useCallback(() => {
     if (!refs.section.current || !refs.image.current || !refs.text.current)
       return;
@@ -45,34 +44,50 @@ const TicketLessSolution: React.FC = () => {
     const ticketLessSolutionTimeline = gsap.timeline({
       scrollTrigger: {
         trigger: refs.section.current,
-        start: "top 20%",
+        start: "top top",
         end: "+=100%",
-        scrub: 1.5,
+        scrub: 2,
         pin: true,
         anticipatePin: 1,
-        onEnter: () => {
-          gsap.set(refs.text.current, { y: "150vh", opacity: 0 });
-        },
       },
     });
 
-    gsap.set(refs.text.current, { y: "150vh", opacity: 0 });
+    // Set initial state
+    gsap.set(refs.text.current, {
+      y: "150vh",
+      opacity: 0,
+      translateX: "-50%",
+      left: "50%",
+    });
 
     ticketLessSolutionTimeline
       .to(refs.text.current, {
-        y: 0,
-        opacity: 1,
-        duration: 0.5,
+        y: "50vh",
+        opacity: 0.3,
+        duration: 0.4,
         ease: "power1.inOut",
       })
       .to(refs.text.current, {
-        y: "-5%",
-        duration: 0.1,
-        ease: "power2.out",
+        y: "25vh",
+        opacity: 0.6,
+        duration: 0.4,
+        ease: "power1.inOut",
       })
       .to(refs.text.current, {
-        y: "0%",
-        duration: 0.1,
+        y: 0,
+        opacity: 1,
+        duration: 0.4,
+        ease: "power1.inOut",
+      })
+      .to(refs.text.current, {
+        y: 0,
+        duration: 1,
+        ease: "none",
+      })
+      .to(refs.text.current, {
+        y: "-150vh",
+        opacity: 0,
+        duration: 0.6,
         ease: "power2.inOut",
       });
 
@@ -91,32 +106,31 @@ const TicketLessSolution: React.FC = () => {
   return (
     <div
       ref={refs.section}
-      className="overflow-hidden w-full block mx-auto"
+      className="overflow-hidden w-full h-[100vh] block mx-auto"
       aria-label="TicketLess Parking Solutions"
       role="region"
     >
-      <div className="relative text-white mx-auto block ticketLess-section h-[800px] w-full">
+      <div className="relative text-white mx-auto block ticketLess-section w-full h-full">
         <div
           ref={refs.image}
-          className="w-full ticketLess-image absolute top-0 left-0 right-0 z-10 backdrop-brightness-50"
+          className="w-full h-full ticketLess-image absolute top-0 left-0 right-0 z-10 backdrop-brightness-50"
           role="img"
           aria-label="TicketLess parking system background"
         >
           <StaticImage
-            src="../../assets/images/ticketLess.svg"
+            src="../../assets/images/ticketLess.webp"
             alt="Modern ticketLess parking system"
-            className="h-[880px] w-full object-cover"
+            className="w-full h-full object-cover div-overlay-plus"
             placeholder="blurred"
             loading="eager"
             formats={["auto", "webp", "avif"]}
             quality={95}
-            height={880}
             aria-hidden="true"
           />
         </div>
         <div
           ref={refs.text}
-          className="absolute -top-40 left-1/2 -translate-x-1/2 z-20 w-full max-w-[1920px] ticketLess-text"
+          className="absolute top-1/2 -translate-y-1/2 z-20 w-full max-w-[1920px] ticketLess-text"
           role="contentinfo"
         >
           <div>

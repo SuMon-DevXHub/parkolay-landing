@@ -26,3 +26,15 @@
     bottom: 0px;
   }
 }
+
+.div-overlay-plus:before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0px;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  background: rgba(0, 0, 20, 0.64);
+}

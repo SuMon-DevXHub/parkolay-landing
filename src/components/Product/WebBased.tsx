@@ -27,7 +27,10 @@ const webBasedSchema = {
   },
 };
 
+type ScreenSize = "mobile" | "tablet" | "desktop";
+
 const WebBased: React.FC = () => {
+  const [screenSize, setScreenSize] = React.useState<ScreenSize>("mobile");
   const refs: AnimationRefs = {
     section: useRef<HTMLDivElement>(null),
     image: useRef<HTMLDivElement>(null),
@@ -41,37 +44,127 @@ const WebBased: React.FC = () => {
     const webBasedTimeline = gsap.timeline({
       scrollTrigger: {
         trigger: refs.section.current,
-        start: "top 10%",
-        end: "bottom top",
-        scrub: 1,
+        start: "top top",
+        end: "+=100%",
+        scrub: 3,
         pin: true,
+        anticipatePin: 1,
       },
     });
 
+    // Set initial states
+    gsap.set(refs.image.current, {
+      x: "100%",
+      opacity: 0,
+    });
+
+    // Different initial states based on screen size
+    if (screenSize === "desktop") {
+      gsap.set(refs.text.current, {
+        y: "100vh",
+        opacity: 0,
+      });
+    } else {
+      gsap.set(refs.text.current, {
+        x: "-100%",
+        opacity: 0,
+      });
+    }
+
     webBasedTimeline
-      .from(refs.image.current, {
-        x: "300%",
+      // Image comes from right and stops in right section
+      .to(refs.image.current, {
+        x: 0,
         opacity: 1,
-        duration: 2,
-        ease: "power2.out",
+        duration: 0.4,
+        ease: "power1.out",
       })
-      .from(refs.text.current, {
-        y: "200vh",
-        opacity: 1,
-        duration: 4,
-        ease: "power2.out",
-      })
-      .to(refs.text.current, {
-        y: "-200vh",
-        opacity: 1,
-        duration: 4,
-        ease: "power4.in",
+      // Pause after image is in position
+      .to(refs.image.current, {
+        duration: 0.2,
+        ease: "none",
+      });
+
+    if (screenSize === "desktop") {
+      // Desktop animation: text from bottom to top
+      webBasedTimeline
+        .to(refs.text.current, {
+          y: "50vh",
+          opacity: 0.3,
+          duration: 0.3,
+          ease: "power1.inOut",
+        })
+        .to(refs.text.current, {
+          y: "25vh",
+          opacity: 0.6,
+          duration: 0.3,
+          ease: "power1.inOut",
+        })
+        .to(refs.text.current, {
+          y: 0,
+          opacity: 1,
+          duration: 0.3,
+          ease: "power1.inOut",
+        })
+        .to(refs.text.current, {
+          y: 0,
+          duration: 0.8,
+          ease: "none",
+        })
+        .to(refs.text.current, {
+          y: "-100vh",
+          opacity: 0,
+          duration: 0.4,
+          ease: "power1.in",
+        });
+    } else {
+      webBasedTimeline
+        .to(refs.text.current, {
+          x: "-75%",
+          opacity: 0.3,
+          duration: 0.3,
+          ease: "power1.inOut",
+        })
+        .to(refs.text.current, {
+          x: "-25%",
+          opacity: 0.6,
+          duration: 0.3,
+          ease: "power1.inOut",
+        })
+        .to(refs.text.current, {
+          x: 0,
+          opacity: 1,
+          duration: 0.3,
+          ease: "power1.inOut",
+        })
+        .to(refs.text.current, {
+          duration: 0.8,
+          ease: "none",
+        })
+        .to(refs.text.current, {
+          y: "-100vh",
+          opacity: 0,
+          duration: 0.4,
+          ease: "power1.in",
+        });
+    }
+
+    webBasedTimeline
+      .to(refs.image.current, {
+        duration: 0.2,
+        ease: "none",
       })
       .to(refs.image.current, {
-        x: "-300%",
-        opacity: 1,
-        duration: 2,
-        ease: "power4.in",
+        x: "-90%",
+        opacity: 0.6,
+        duration: 0.4,
+        ease: "power1.in",
+      })
+      .to(refs.image.current, {
+        x: "-150%",
+        opacity: 0,
+        duration: 0.4,
+        ease: "power1.in",
       });
 
     return () => {
@@ -79,21 +172,36 @@ const WebBased: React.FC = () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
       refs.section.current?.removeAttribute("aria-hidden");
     };
-  }, []);
+  }, [screenSize]);
 
   useEffect(() => {
     const cleanup = setupAnimation();
     return () => cleanup?.();
   }, [setupAnimation]);
 
+  const getScreenSize = useCallback(() => {
+    console.log(window.innerWidth, "check inner width");
+    const screenWidth = window.innerWidth;
+
+    if (screenWidth >= 1536) {
+      setScreenSize("desktop");
+    } else if (screenWidth >= 1024) {
+      setScreenSize("tablet");
+    } else {
+      setScreenSize("mobile");
+    }
+
+    setupAnimation();
+  }, [window.innerWidth]);
+
   return (
     <div
       ref={refs.section}
-      className="overflow-hidden w-full block mx-auto"
+      className="overflow-hidden w-full max-w-[1920px] h-[100vh] block mx-auto"
       aria-label="Web-Based User Interface"
       role="region"
     >
-      <div className="flex justify-center items-center gap-10 lg:flex-row flex-col webBased-section mx-auto xl:px-20 md:px-10 px-6 h-[400px] w-full">
+      <div className="flex justify-center items-center gap-10 lg:flex-row flex-col webBased-section mx-auto xl:px-20 md:px-10 px-6 h-full w-full">
         <div
           ref={refs.text}
           className="lg:w-1/2 w-full webBased-text"
@@ -110,14 +218,14 @@ const WebBased: React.FC = () => {
           aria-label="Web-based interface illustration"
         >
           <StaticImage
-            src="../../assets/images/web_based.svg"
+            src="../../assets/images/web_based.jpg"
             alt="Web-based parking management interface"
-            className="h-[400px] w-full object-cover"
+            className="h-full w-full object-cover"
             placeholder="blurred"
             loading="eager"
             formats={["auto", "webp", "avif"]}
             quality={95}
-            height={400}
+            aria-hidden="true"
           />
         </div>
       </div>

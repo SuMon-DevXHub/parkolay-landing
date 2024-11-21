@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useCallback } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { StaticImage } from "gatsby-plugin-image";
-import { HeadFC } from "gatsby";
+import { HeadFC, Link } from "gatsby";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -12,7 +12,6 @@ interface AnimationRefs {
   section: React.RefObject<HTMLDivElement>;
   image: React.RefObject<HTMLDivElement>;
   text: React.RefObject<HTMLDivElement>;
-  text1: React.RefObject<HTMLDivElement>;
 }
 
 const easyUseSchema = {
@@ -33,87 +32,86 @@ const EasyUse: React.FC = () => {
     section: useRef<HTMLDivElement>(null),
     image: useRef<HTMLDivElement>(null),
     text: useRef<HTMLDivElement>(null),
-    text1: useRef<HTMLDivElement>(null),
   };
 
   const setupAnimation = useCallback(() => {
-    if (
-      !refs.section.current ||
-      !refs.image.current ||
-      !refs.text.current ||
-      !refs.text1.current
-    )
+    if (!refs.section.current || !refs.image.current || !refs.text.current)
       return;
 
     const easyUseTimeline = gsap.timeline({
       scrollTrigger: {
         trigger: refs.section.current,
-        start: "top center",
-        end: "+=450px",
-        scrub: 1,
+        start: "top top",
+        end: "+=100%",
+        scrub: 1.5,
         pin: true,
         anticipatePin: 1,
       },
     });
 
-    gsap.set(refs.text.current, { y: "450px", opacity: 0 });
-    gsap.set(refs.image.current, { y: "450px", opacity: 0 });
-    gsap.set(refs.text1.current, { y: "450px", x: 0, opacity: 0 });
+    // Set initial states
+    gsap.set(refs.image.current, {
+      x: "-100%",
+      opacity: 0,
+    });
+    gsap.set(refs.text.current, {
+      x: "100%",
+      opacity: 0,
+    });
 
     easyUseTimeline
-      .to(refs.text.current, {
-        y: 0,
-        opacity: 1,
-        duration: 0.2,
-        ease: "power2.out",
-      })
+      // Image comes from left smoothly
       .to(refs.image.current, {
-        y: 0,
-        opacity: 1,
-        duration: 0.2,
-        ease: "power2.out",
-      })
-      .to(refs.text.current, {
-        y: 0,
+        x: "-75%",
+        opacity: 0.3,
         duration: 0.4,
-        ease: "power2.out",
+        ease: "power1.out",
       })
       .to(refs.image.current, {
-        y: 0,
+        x: "-25%",
+        opacity: 0.7,
         duration: 0.4,
-        ease: "power2.out",
+        ease: "power1.out",
       })
       .to(refs.image.current, {
-        y: "-450px",
-        duration: 0.2,
-        ease: "power2.in",
-      })
-      .to(refs.text.current, {
-        x: "200%",
-        duration: 0.2,
-        ease: "power2.in",
-      })
-      .to(refs.text1.current, {
         x: 0,
-        y: 0,
         opacity: 1,
-        duration: 0.2,
-        ease: "power2.out",
+        duration: 0.4,
+        ease: "power1.out",
       })
-      .to(refs.text1.current, {
-        x: "30%",
-        duration: 0.2,
-        ease: "power2.inOut",
+      // Pause after image is in position
+      .to(refs.image.current, {
+        duration: 0.3,
+        ease: "none",
       })
-      .to(refs.text1.current, {
-        y: "-450px",
-        duration: 0.2,
-        ease: "power2.in",
+      // Text comes from right smoothly
+      .to(refs.text.current, {
+        x: "75%",
+        opacity: 0.3,
+        duration: 0.4,
+        ease: "power1.inOut",
+      })
+      .to(refs.text.current, {
+        x: "25%",
+        opacity: 0.7,
+        duration: 0.4,
+        ease: "power1.inOut",
+      })
+      .to(refs.text.current, {
+        x: 0,
+        opacity: 1,
+        duration: 0.4,
+        ease: "power1.inOut",
+      })
+      .to([refs.image.current, refs.text.current], {
+        duration: 1,
+        ease: "none",
       });
 
     return () => {
       easyUseTimeline.kill();
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      refs.section.current?.removeAttribute("aria-hidden");
     };
   }, []);
 
@@ -125,27 +123,27 @@ const EasyUse: React.FC = () => {
   return (
     <div
       ref={refs.section}
-      className="overflow-hidden max-w-[1920px] w-full block mx-auto"
+      className="overflow-hidden flex justify-center h-[100vh] items-center max-w-[1920px] w-full mx-auto"
       aria-label="Easy to Use Parking System"
       role="region"
     >
-      <div className="mx-auto xl:px-20 md:px-10 px-6 w-full h-[450px]">
+      <div className="mx-auto xl:px-20 md:px-10 px-6 w-full h-full">
         <div className="flex justify-center items-center gap-10 lg:flex-row flex-col easy-section h-full">
           <div
             ref={refs.image}
             className="lg:w-1/2 w-full easy-image"
             role="img"
-            aria-label="Tariff machine illustration"
+            aria-label="Easy to use system illustration"
           >
             <StaticImage
-              src="../../assets/images/tariff_machine.svg"
+              src="../../assets/images/tariff_machine.jpg"
               alt="Parking tariff machine interface"
-              className="h-[450px] mr-auto"
+              className="block mr-auto"
               placeholder="blurred"
               loading="eager"
               formats={["auto", "webp", "avif"]}
               quality={95}
-              height={450}
+              width={682}
             />
           </div>
           <div
@@ -153,17 +151,14 @@ const EasyUse: React.FC = () => {
             className="lg:w-1/2 w-full easy-text"
             role="contentinfo"
           >
-            <h1 className="text-[#05B6C7] xl:text-7xl md:text-5xl text-3xl w-full font-semibold xl:pb-5 pb-4 uppercase">
+            <h1
+              className="text-[#05B6C7] 2xl:text-7xl md:text-5xl text-3xl w-full font-semibold text-center xl:pb-5 pb-4 uppercase"
+              id="easy-to-use-title"
+            >
               EASY TO USE
             </h1>
           </div>
         </div>
-        <h2
-          ref={refs.text1}
-          className="text-[#05B6C7] xl:text-7xl md:text-5xl text-3xl font-semibold xl:pb-5 pb-4 uppercase"
-        >
-          SAFE AND SILENT
-        </h2>
       </div>
     </div>
   );
